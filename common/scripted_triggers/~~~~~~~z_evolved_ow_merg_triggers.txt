@@ -1,0 +1,151 @@
+# Scripted triggers from mods, expanded to acknowledge other mods.
+
+# Expanded by me for more cross-mod comp and to ease the game rules coding.
+is_megacorp = {
+	OR = {
+		has_authority = auth_corporate
+		has_valid_civic = civic_galactic_sovereign_megacorp
+		# Stellaris Evolved
+		has_authority = auth_tec_patrocorporate
+		has_authority = auth_tec_ai_corporate
+		# Warship Girls R And MIST Species
+		has_authority = auth_warshipgirls
+		# More Authorities
+		has_authority = auth_corporate_imperial # Also in E&C Bug Branch
+		# Ethics and Civics - Bug Branch
+		has_authority = auth_corporate_democratic
+		# Expanded Traits, Civics, Pops, and More
+		has_authority = auth_private
+		has_authority = auth_cooperative # Also More Corporate Authorities
+		# Expanded Gestalts: Forgotten Queens
+		has_valid_civic = civic_mutualistic_behavior
+		has_valid_civic = civic_machine_trading
+		# Arknights Near Future
+		has_valid_civic = civic_city_enterprise
+		# More Corporate Authorities
+		has_authority = auth_corporate_fiefdom
+	}
+}
+
+is_regular_empire = {
+	OR = {
+		is_country_type = default
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+		# Stellaris Evolved
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# The Empty Vagrant
+		is_country_type = default_ev
+		is_country_type = fallen_empire_ev
+		is_country_type = awakened_fallen_empire_ev
+		# Human Fallen Empire
+		is_country_type = human_fallen_empire
+		is_country_type = hfe_pirate
+	}
+	NOT = { has_ethic = ethic_gestalt_consciousness	}
+}
+
+has_encountered_other_species = {
+	OR = {
+		has_origin = origin_syncretic_evolution
+		has_origin = origin_necrophage
+		has_civic = civic_machine_servitor
+		# Stellaris Evolved
+		has_country_flag = tec_has_encountered_other_species
+		# Ethics and Civics Classic and all its variants
+		has_valid_civic = civic_symbiotic_race
+		has_valid_civic = civic_slave_race
+		# Ethics & Civics: Bug Branch
+		has_valid_civic = civic_evolutionary_architects
+		has_valid_civic = civic_slave_race_corpo
+		has_valid_civic = civic_evolutionary_architects_corpo
+		# Vanilla
+		num_communications > 0
+		any_owned_pop = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				is_same_species = prev
+				# Stellaris Evolved
+				has_trait = "trait_tec_bioservant"
+			}
+		}
+	}
+}
+
+colonizable_planet = {
+	OR = {
+		is_planet_class = pc_city
+		is_planet_class = pc_relic
+		is_planet_class = pc_nuked
+		is_planet_class = pc_hive
+		is_planet_class = pc_machine
+		habitable_structure = yes
+		habitable_planet = yes
+		is_artificial = yes
+		# Planetary Diversity
+		is_planet_class = pc_pdshroud
+		is_planet_class = pc_irradiated
+		# Gigastructures
+		is_planet_class = pc_katzenland
+		# SW:UnknownWorld Shipgirls Story
+		is_planet_class = pc_swgs_engineer
+		is_planet_class = pc_swgs_engineer_ringworld_habitable
+		# Warship Girls R And MIST Species
+		is_planet_class = pc_wsg_port
+		is_planet_class = pc_shenhai
+		# APSR: Anomalies, Planetary and Space Resources
+		AND = {
+			has_apsr = yes
+			has_apsr_modifiers = yes
+		}
+		# Endless Frontier
+		is_planet_class = pc_mzilli_shadow
+		# Stellaris Evolved
+		is_planet_class = pc_tec_protoworld
+	}
+}
+
+is_country_type_with_subjects = {
+	OR = {
+		is_country_type = default
+		is_country_type = awakened_fallen_empire
+		# Stellaris Evolved
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# The Empty Vagrant
+		is_country_type = default_ev
+		# ACOT
+		is_country_type = original_empire
+		is_country_type = original_empire_passive
+		is_country_type = original_empire_active
+	}
+}
+
+is_autocracy = { #Power of one
+	OR = {
+		has_ethic = ethic_gestalt_consciousness
+		has_authority = auth_imperial
+		has_authority = auth_dictatorial
+		# Stellaris Evolved
+		has_authority = auth_tec_theocracy
+		has_authority = auth_tec_patrocorporate
+		has_authority = auth_tec_ai_corporate
+		# More Authorities
+		has_authority = auth_corporate_imperial
+		AND = {
+			has_authority = auth_democratic_dictatorship
+			is_authoritarian = yes
+		}
+		# Expanded Traits, Civics, Pops, and More
+		has_authority = auth_private
+		# More Corporate Authorities
+		has_authority = auth_corporate_fiefdom
+	}
+}

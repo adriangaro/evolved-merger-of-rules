@@ -1,0 +1,64 @@
+# Merger of Rules scripted triggers
+# These triggers are also meant as a library for modders who want to reuse them in their own mods.
+
+merg_is_standard_empire = {
+	OR = {
+		is_country_type = default
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# The Empty Vagrant
+		is_country_type = default_ev
+		is_country_type = fallen_empire_ev
+		is_country_type = awakened_fallen_empire_ev
+		# Stellaris Evolved
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+		# Human Fallen Empire
+		is_country_type = human_fallen_empire
+		is_country_type = hfe_pirate
+	}
+}
+
+# Expanded version of country_type = default
+# Also replacing is_zofe_compatible so I don't have to check for a global flag
+merg_is_default_empire = {
+	OR = {
+		is_country_type = default
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# The Empty Vagrant
+		is_country_type = default_ev
+		# Stellaris Evolved
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+	}
+}
+
+merg_has_cloning_building = {
+	OR = {
+		# Vanilla
+		has_building = building_clone_vats
+		# ANZ Advanced Cloning
+		has_building = building_clone_vats_basic_organic
+		has_building = building_clone_vats_improved_organic
+		has_building = building_clone_vats_advanced_organic
+		has_building = building_clone_vats_augmented_organic
+		has_building = building_clone_vats_basic_asim
+		has_building = building_clone_vats_improved_asim
+		has_building = building_clone_vats_advanced_asim
+		has_building = building_clone_vats_augmented_asim
+		has_building = building_clone_vats_basic_serv
+		has_building = building_clone_vats_improved_serv
+		has_building = building_clone_vats_advanced_serv
+		has_building = building_clone_vats_augmented_serv
+		# Ethics and Civics Bug Branch
+		has_building = building_evolution_monastery
+		has_building = building_evolution_monastery_two
+		tec_has_cloning_buildings = yes
+		tec_has_genetic_buildings = yes
+	}
+}

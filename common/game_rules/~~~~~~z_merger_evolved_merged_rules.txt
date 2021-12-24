@@ -1,0 +1,1131 @@
+#Tooltips will be generated from these rules when they fail. Use of custom_tooltip is recommended
+#There are still multiple hard-coded rules that apply in addition to these.
+#If rules here evaluate to true, there might still be other rules that make the action unavailable.
+#If a rule here evaluates to false the action will become unavailable
+#Checks whether any leaders (scientists etc) can be formed from this pop
+#Root = country
+#This = pop
+can_generate_leader_from_pop = {
+	has_citizenship_rights = yes
+	NOR = {
+		has_trait = trait_syncretic_proles
+		has_trait = trait_nerve_stapled
+		# Rogue Maid (Rogue Servitor Completely Remake)
+		has_trait = trait_working_machine
+		# Plentiful Perks
+		has_trait = trait_plentiful_traditions_pt_cocoon
+		# Ethics & Civics: Bug Branch
+		has_trait = trait_slave_gene
+		# Expanded Events / Expanded Traits, Civics, Pops, and More
+		has_trait = trait_memorex_comatos
+		has_trait = trait_infested_basic
+		# Holofrixit Revisited
+		has_trait = trait_holodrone
+		# Expanded Gestalts
+		root = {
+			has_origin = origin_hive_overmind
+		}
+		# Diagraphers Trait Mod
+		has_trait = trait_subsapient_form
+		has_trait = trait_living_architecture
+		# Stellaris Evolved
+		AND = {
+			has_stellaris_evolved = yes
+			tec_has_stapled_trait = yes
+		}
+	}
+	OR = {
+		is_robot_pop = no
+		root = {
+			OR = {
+				has_technology = tech_synthetic_leaders
+				has_authority = auth_machine_intelligence
+				is_mechanical_empire = yes
+				# Girls Frontline
+				root = {
+					has_technology = tech_mind_plus
+				}
+			}
+		}
+		# Holofrixit Revisited
+		ROOT = {
+			has_origin = origin_holofrixit
+			PREV.species = {
+				OR = {
+					NOT = {
+						has_trait = trait_holofrixit
+					}
+					has_trait = trait_holooverseer
+					has_trait = trait_hologanglion
+					# has_trait = trait_holowarrior
+					# has_trait = trait_holowarrior_2
+				}
+			}
+		}
+	}
+	OR = {
+		is_same_species = root
+		root = {
+			NAND = {
+				has_origin = origin_necrophage
+				has_trait = trait_necrophage
+			}
+		}
+	}
+	# Stellaris Evolved
+	OR = {
+		NOT = {
+			has_trait = trait_tec_bioservant
+		}
+		root = {
+			has_technology = tech_tec_bioservant_3
+		}
+	}
+}
+
+#Checks whether this species is eligible to become rulers through elections
+#Root = country
+#This = species
+can_generate_leader_from_species = {
+	is_sapient = yes
+	OR = {
+		NAND = {
+			NOT = {
+				root = {
+					OR = {
+						has_technology = "tech_synthetic_leaders"
+						# Stellaris Evolved
+						has_country_flag = synthetic_empire
+					}
+				}
+			}
+			has_trait = "trait_mechanical"
+		}
+		has_citizenship_type = {
+			type = citizenship_full
+			country = root
+		}
+		# ThaumStellaris
+		NOT = {
+			has_trait = "tc_trait_golem"
+		}
+		# Stellaris Evolved
+		NAND = {
+			NOT = {
+				root = {
+					has_technology = "tech_tec_bioservant_3"
+				}
+			}
+			has_trait = "trait_tec_bioservant"
+		}
+	}
+}
+
+# This = Species
+species_has_happiness = {
+	NOR = {
+		has_trait = trait_machine_unit
+		has_trait = trait_hive_mind
+		has_trait = trait_nerve_stapled
+		# Stellaris Evolved
+		has_trait = trait_tec_bioservant_nerve_stapled
+		# Warship Girls R And MIST Species
+		has_trait = sh_trait_shenhai
+		has_trait = sh_trait_shenhai1
+		has_trait = sh_trait_shenhai2
+		has_trait = sh_trait_silent
+		has_trait = sh_trait_silent1
+		# Expanded Events
+		has_trait = trait_memorex_comatos
+		# Trait Diversity
+		has_trait = trait_td_multi_hiveminded
+		has_trait = trait_td_emotionless
+		has_trait = trait_td_psychopathic
+		has_trait = trait_td_thymoleptic_implants
+		has_trait = trait_td_rbot_thymoleptic_scripts
+		has_trait = trait_td_rbot_thought_inhibitor
+		# Diagraphers Trait Mod
+		has_trait = trait_multihive_drone
+		# ThaumStellaris
+		has_trait = tc_trait_golem
+		# Vanilla
+		AND = {
+			has_trait = trait_mechanical
+			# Animated Synthetics Portraits Expanded: Reborn
+			OR = {
+				has_animated_synth = no
+				AND = {
+					has_animated_synth = yes
+					from = {
+						has_authority = auth_machine_intelligence
+					}
+					has_trait = trait_extsynth_synthetic
+					NOT = {
+						has_trait = trait_psionic
+					}
+				}
+				AND = {
+					has_global_flag = extended_synths_on
+					NOT = {
+						from = {
+							has_authority = auth_machine_intelligence
+						}
+						has_trait = trait_extsynth_synthetic
+					}
+				}
+			}
+			# Vanilla
+			OR = {
+				NOT = {
+					exists = from
+				}
+				from = {
+					has_authority = auth_machine_intelligence
+				}
+				from = {
+					NOT = {
+						has_technology = tech_synthetic_workers
+					}
+				}
+				from = {
+					has_policy_flag = ai_outlawed
+				}
+			}
+		}
+		AND = {
+			has_trait = trait_cybernetic
+			exists = from
+			from = {
+				has_authority = auth_machine_intelligence
+				has_civic = civic_machine_assimilator				# Assimilator empire
+			}
+		}
+	}
+}
+
+# Checks if a pop can procreate
+# This = Species
+# Root = Planet
+can_species_procreate = {
+	is_sapient = yes
+	NOR = {
+		has_trait = trait_machine_unit
+		has_trait = trait_mechanical
+		# Plentiful Traditions - Extra Perks
+		has_trait = trait_plentiful_traditions_pt_cocoon
+		# Madoka Magica NEW
+		has_trait = trait_mahoshoujo
+		# Expanded Events
+		has_trait = trait_memorex_comatos
+		AND = {
+			root = {
+				owner = {
+					has_origin = origin_hive_queen
+				}
+			}
+			has_trait = trait_hive_mind
+		}
+		# Girls Frontline
+		has_trait = trait_doll
+		# Human Fallen Empires
+		has_trait = hfe_species_trait_brainworm
+		# Holofrixit Revisited
+		has_trait = trait_hologanglion
+		# Expanded Gestalts
+		has_trait = trait_hive_mind_overlord
+		# Diagraphers Trait Mod
+		has_trait = trait_dimorphic_male
+	}
+	NAND = {
+		root = {
+			has_modifier = slave_colony
+		}
+		NOT = {
+			has_citizenship_type = {
+				type = citizenship_slavery
+				country = root.owner
+			}
+		}
+		# Special Colonies Overhaul
+		AND = {
+			has_special_colonies = yes
+			NOT = {
+				root = {
+					owner = {
+						or = {
+							has_civic = civic_slaver_guilds
+							has_civic = civic_indentured_assets
+						}
+					}
+				}
+			}
+		}
+	}
+	# Diagraphers Trait Mod
+	NAND = {
+		has_trait = trait_exotic_gas_dependency
+		exists = root.owner
+		root.owner = {
+			resource_stockpile_compare = {
+				resource = exotic_gases
+				value <= 0
+			}
+		}
+	}
+	NAND = {
+		has_trait = trait_delicate
+		exists = root.owner
+		has_citizenship_type = {
+			type = citizenship_slavery
+			country = root.owner
+		}
+	}
+	NAND = {
+		has_trait = trait_sterile
+		exists = root.owner
+		root.owner = {
+			has_artificial_wombs = no
+		}
+	}
+	NOT = {
+		has_species_flag = nivlac_no_procreation
+	}
+	if = {
+		limit = {
+			has_trait = trait_necrophage
+		}
+		NOT = {
+			root = {
+				any_owned_species = {
+					has_population_control = {
+						country = root.owner
+						value = no
+					}
+					species_can_be_necrophaged = yes
+				}
+			}
+		}
+	}
+	# Stellaris Evolved
+	# Apathic servitors control the population of non trophies pretty well
+	if = {
+		limit = {
+			root.owner = {
+				has_valid_civic = civic_machine_servitor
+				has_ethic = ethic_gestalt_apathy
+			}
+			NOT = {
+				has_species_flag = tec_original_biotrophy_@root.owner
+			}
+		}
+		NOT = {
+			root = {
+				any_owned_species = {
+					has_species_flag = tec_original_biotrophy_@root.owner
+				}
+			}
+		}
+	}
+}
+
+# Checks if a pop can be assembled
+# This = Species
+# Root = Planet
+can_species_be_assembled = {
+	is_sapient = yes
+	OR = {
+		has_stellaris_evolved = no
+		tec_can_assemble_species_due_to_purity_assembly_policy = yes
+	}
+	NOT = {
+		has_trait = trait_holodrone
+	}
+	# Holofrixit Revisited
+	OR = {
+		# Robots
+		AND = {
+			is_robotic = yes
+			# Azur lane Stellaris DLC
+			NOT = {
+				has_trait = trait_robot_mind_relic_core
+			}
+			# Diagraphers Trait Mod
+			NAND = {
+				has_trait = trait_robot_rare_crystal_components
+				exists = root.owner
+				root.owner = {
+					resource_stockpile_compare = {
+						resource = rare_crystals
+						value <= 0
+					}
+				}
+			}
+			# Vanilla
+			root = {
+				check_modifier_value = {
+					modifier = planet_pop_assembly_add
+					value > 0
+				}
+				owner = {
+					NOR = {
+						# Azur lane Stellaris DLC
+						has_authority = auth_azur_lane_1
+						has_authority = auth_azur_lane_2
+						has_authority = auth_azur_lane_K
+						# Girls Frontline
+						has_authority = auth_commonwealth
+					}
+				}
+				# Stellaris Evolved
+				if = {
+					limit = {
+						tec_is_self_replicating_pop = yes
+					}
+					any_owned_species = {
+						is_exact_same_species = prevprev
+					}
+				}
+			}
+		}
+		# Organics - this is the vanilla version
+		AND = {
+			# Evolved - Regular Organic rule - As closer as vanilla as possible
+			is_organic_species = yes
+			if = {
+				limit = {
+					OR = {
+						has_trait = trait_plantoid_budding
+						AND = {
+							# Stellaris Evolved
+							tec_is_self_replicating_pop = yes							# This includes budding
+						}
+					}
+				}
+				root = {
+					any_owned_species = {
+						is_exact_same_species = prevprev
+					}
+					OR = {
+						has_stellaris_evolved = no
+						tec_blocks_organic_assembly = no
+					}
+				}
+			}
+			else_if = {
+				# Hives can only assemble drones with spawning pools/queens only breed their own types
+				limit = {
+					root.owner = {
+						is_hive_empire = yes
+					}
+				}
+				AND = {
+					has_trait = trait_hive_mind
+					# Expanded Gestalts
+					NOT = {
+						has_trait = trait_hive_mind_overlord
+					}
+				}
+				# Stellaris Evolved
+				root = {
+					OR = {
+						has_stellaris_evolved = no
+						tec_can_assemble_organic_hive_species = yes
+					}
+				}
+			}
+			# Expanded Traits, Civics, Pops, and More
+			else_if = {
+				limit = {
+					Root = {
+						owner = {
+							has_origin = origin_sacred_tree
+						}
+						OR = {
+							has_deposit = d_tree_of_life_home
+							has_deposit = is_for_colonizable
+						}
+					}
+				}
+				OR = {
+					has_trait = trait_tree_caretaker
+					merg_has_cloning_building = yes
+				}
+			}
+			else_if = {
+				# Clone army thing
+				limit = {
+					# Stellaris Evolved note - Made the triggers for a future clone army revamp
+					OR = {
+						has_trait = trait_clone_soldier_infertile
+						has_trait = trait_clone_soldier_infertile_full_potential
+						tec_is_clone_origin_pop = yes
+					}
+				}
+				root = {
+					# Event 'clones.3' should cover this, but extra safety check.
+					OR = {
+						has_building = building_clone_army_clone_vat
+						tec_has_clone_origin_buildings = yes
+					}
+					# Trigger with the clone origin buildings, actually only including the vanilla one
+					OR = {
+						NOT = {
+							check_variable = {
+								which = clone_pops_missing
+								value = 0
+							}
+						}
+						# Unused flag, for now
+						owner = {
+							tec_waives_clone_origin_assembly_restrictions = yes
+						}
+					}
+				}
+			}
+			# Plentiful Traditions - Extra Perks
+			else_if = {
+				limit = {
+					root.owner = {
+						has_ascension_perk = ap_total_assimilation
+					}
+				}
+				has_trait = trait_plentiful_traditions_pt_cocoon
+			}
+			# The Dark Art of Necromancy
+			else_if = {
+				limit = {
+					OR = {
+						has_trait = trait_necromage
+						has_trait = trait_undead
+						has_trait = trait_mindless_undead
+					}
+				}
+			}
+			else = {
+				# Regular assembly
+				OR = {
+					root = {
+						merg_has_cloning_building = yes
+						OR = {
+							has_anz_cloning = no
+							# ANZ Advanced Cloning
+							AND = {
+								has_anz_cloning = yes
+								NOT = {
+									has_modifier = planet_cloning_limits
+								}
+							}
+						}
+					}
+					# The DAL Species Mod
+					is_archetype = DATEALIVE
+					# Warship Girls R and MIST species
+					is_archetype = WARSHIPGIRL
+					is_archetype = SHENHAI
+					# Star Wars: UnknownWorld Shipgirls Story
+					is_archetype = STARSHIPGIRLS
+				}
+				# Stellaris Evolved
+				root = {
+					OR = {
+						has_stellaris_evolved = no
+						tec_blocks_organic_assembly = no
+					}
+				}
+			}
+			# Special Colonies Overhaul
+			NAND = {
+				has_special_colonies = yes
+				root = {
+					has_modifier = slave_colony
+				}
+				NOT = {
+					has_citizenship_type = {
+						type = citizenship_slavery
+						country = root.owner
+					}
+				}
+				not = {
+					root = {
+						owner = {
+							or = {
+								has_valid_civic = civic_slaver_guilds
+								has_valid_civic = civic_indentured_assets
+							}
+						}
+					}
+				}
+			}
+		}
+		# Azur lane Stellaris DLC
+		AND = {
+			species = {
+				is_archetype = KANSEN
+			}
+			root = {
+				check_modifier_value = {
+					modifier = planet_pop_assembly_organic_add
+					value > 0
+				}
+			}
+		}
+		# Girls Frontline
+		AND = {
+			has_trait = trait_doll
+			root.owner = {
+				has_authority = auth_commonwealth
+			}
+		}
+		AND = {
+			# Evolved - Bioservants rule - Can be assembled with bioservant facilities present
+			has_stellaris_evolved = yes
+			is_archetype = BIOSERVANT
+			root = {
+				check_modifier_value = {
+					modifier = planet_pop_assembly_organic_add
+					value > 0
+				}
+				tec_has_bioservant_buildings = yes
+			}
+		}
+		AND = {
+			# Evolved - Replicants rule - Just made if assembly is present, op nanocomposition
+			has_stellaris_evolved = yes
+			is_archetype = REPLICANT
+			root = {
+				OR = {
+					check_modifier_value = {
+						modifier = planet_pop_assembly_organic_add
+						value > 0
+					}
+					check_modifier_value = {
+						modifier = planet_pop_assembly_add
+						value > 0
+					}
+				}
+			}
+		}
+	}
+	# Expanded Gestalts
+	NAND = {
+		root = { owner = { has_valid_civic = civic_machine_replicators } }
+		has_trait = trait_machine_central
+	}
+	# Vanilla
+	has_population_control = {
+		value = no
+		country = root.owner
+	}
+}
+
+# This = country
+can_build_branch_offices = {
+	if = {
+		limit = {
+			OR = {
+				has_stellaris_evolved = no
+				is_regular_empire = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_NOT_MEGACORP
+			OR = {
+				is_megacorp = yes
+				# Warship Girls R And MIST Species
+				AND = {
+					has_authority = auth_shenhai
+					OR = {
+						has_country_flag = pantsu_shop_origin
+						has_valid_civic = civic_sh_criminal_syndicate
+					}
+				}
+				# Azur Lane Stellaris DLC
+				has_authority = auth_azur_lane_0
+				has_authority = auth_azur_lane_1
+				has_authority = auth_azur_lane_2
+				has_authority = auth_azur_lane_K
+				# Girls Frontline
+				has_valid_civic = civic_gk
+				# Human Fallen Empires
+				is_country_type = hfe_pirate
+				# More Corporate Authorities
+				has_valid_civic = civic_galactic_sovereign_megacorp
+				# Arknights Near Future
+				has_valid_civic = civic_business_union
+			}
+		}
+	}
+	# Stellaris Evolved
+	if = {
+		limit = {
+			has_stellaris_evolved = yes
+			is_hive_empire = yes
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_NOT_SYMBIOTIC
+			tec_is_symbiotic_hivemind = yes
+		}
+	}
+	if = {
+		limit = {
+			has_stellaris_evolved = yes
+			is_machine_empire = yes
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_NOT_SYMBIOTIC_MACHINE
+			tec_is_symbiotic_machine = yes
+		}
+	}
+}
+
+# This = country
+can_support_branch_offices = {
+	custom_tooltip = {
+		fail_text = BRANCH_OFFICE_NOT_FALLEN_EMPIRES
+		NOR = {
+			merg_is_fallen_empire = yes
+			merg_is_awakened_fe = yes
+			# Warship Girls R And MIST Species
+			has_authority = auth_azur_dictatorial
+			# Girls Frontline
+			has_civic = civic_gk
+		}
+	}
+	if = {
+		limit = {
+			has_stellaris_evolved = no
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_NOT_ON_MEGACORP_PLANET
+			NOR = {
+				is_megacorp = yes
+				# Warship Girls R And MIST Species
+				AND = {
+					has_authority = auth_shenhai
+					OR = {
+						has_country_flag = pantsu_shop_origin
+						has_valid_civic = civic_sh_criminal_syndicate
+					}
+				}
+				# Azur Lane Stellaris DLC
+				has_authority = auth_azur_lane_1
+				# Reworked Advanced Ascension
+				is_subject_type = subsidiary2
+				# More Corporate Authorities
+				has_valid_civic = civic_galactic_sovereign_megacorp
+				# Arknights Near Future
+				has_valid_civic = civic_business_union
+			}
+		}
+	}
+	# More Authorities
+	# As some mods allow megacorps to build branch offices in other megacorps, we need to check that we're not building one on our own empire.
+	if = {
+		limit = {
+			has_more_authorities = yes
+		}
+		custom_tooltip = {
+			fail_text = ACTION_RECIPIENT_NOT_YOUR_CORP
+			NAND = {
+				is_megacorp = yes
+				is_subject = no
+			}
+		}
+	}
+	# Stellaris Evolved
+	# Gestalts empathic empires can host branch offices
+	if = {
+		limit = {
+			has_stellaris_evolved = yes
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_ONLY_EMPATHIC_GESTALTS
+			OR = {
+				is_regular_empire = yes
+				AND = {
+					is_gestalt = yes
+					has_ethic = ethic_gestalt_empathy
+				}
+			}
+		}
+	}
+	else = {
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_NOT_REGULAR_EMPIRE
+			is_regular_empire = yes
+		}
+	}
+}
+
+# This = planet
+# Root = country
+can_build_branch_office_on_planet = {
+	custom_tooltip = {
+		fail_text = requires_recipient_not_fanatic_purifiers
+		exists = owner
+		owner = {
+			OR = {
+				is_same_species = root
+				NOT = {
+					has_civic = civic_fanatic_purifiers
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				has_stellaris_evolved = no
+				tec_branch_office_requires_commercial_pact = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_NOT_COMMERCIAL_PACT
+			exists = owner
+			OR = {
+				root = {
+					OR = {
+						is_criminal_syndicate = yes
+						# Azur Lane Stellaris DLC
+						has_authority = auth_azur_lane_1
+					}
+				}
+				owner = {
+					has_commercial_pact = root
+				}
+				owner = {
+					is_in_federation_with = root
+				}
+				# Expanded Traits, Civics, Pops, and More
+				AND = {
+					has_expanded_pops = yes
+					owner = {
+						has_country_flag = cb_markets_opened@root
+					}
+				}
+				# Warship Girls R And MIST Species
+				AND = {
+					owner = {
+						has_country_flag = lose_wg_shop_war
+					}
+					root = {
+						OR = {
+							has_country_flag = pantsu_shop_origin
+							has_valid_civic = civic_sh_criminal_syndicate
+						}
+					}
+				}
+				# Azur Lane Stellaris DLC
+				owner = {
+					AND = {
+						OR = {
+							has_authority = auth_azur_lane_2
+							has_authority = auth_azur_lane_0
+							has_authority = auth_azur_lane_K
+						}
+						is_same_value = root
+					}
+				}
+				# Human Fallen Empires
+				root = {
+					is_country_type = hfe_pirate
+					is_forced_friendly = prev.owner
+				}
+				root = {
+					tec_is_parasite_hivemind = yes
+				}
+				# Vanilla
+				# allow branch offices in subsidiaries and vice versa
+				root = {
+					is_subject = yes
+					OR = {
+						is_subject_type = subsidiary
+						# Reworked Advanced Ascension
+						is_subject_type = subsidiary2
+						# Stellaris Evolved
+						tec_is_symbiotic_gestalt = yes
+						# Warship Girls R And MIST Species
+						overlord = {
+							has_authority = auth_warshipgirls
+						}
+					}
+					overlord = {
+						is_same_value = prevprev.owner
+					}
+				}
+				owner = {
+					is_subject = yes
+					OR = {
+						is_subject_type = subsidiary
+						# Reworked Advanced Ascension
+						is_subject_type = subsidiary2
+						# Stellaris Evolved
+						root = {
+							tec_is_symbiotic_gestalt = yes
+						}
+					}
+					overlord = {
+						is_same_value = root
+					}
+				}
+				AND = {
+					root = {
+						has_civic = civic_galactic_sovereign_megacorp
+					}
+					owner = {
+						is_galactic_community_member = yes
+					}
+				}
+				AND = {
+					root = {
+						has_modifier = imperial_charter
+					}
+					owner = {
+						is_galactic_community_member = yes
+					}
+				}
+				# Vassals Expanded and Reworked
+				# allow branch offices in all subjects and vice versa
+				AND = {
+					has_vassals_expanded = yes
+					OR = {
+						root = {
+							is_subject = yes
+							overlord = {
+								is_same_value = prevprev.owner
+							}
+						}
+						owner = {
+							is_subject = yes
+							overlord = {
+								is_same_value = root
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = BRANCH_OFFICE_CRIMINAL_HERITAGE_HAS_TRUCE
+		exists = owner
+		OR = {
+			root = {
+				is_criminal_syndicate = no
+			}
+			owner = {
+				NOR = {
+					has_truce = root
+					is_at_war_with = root
+				}
+			}
+			# Azur Lane Stellaris DLC
+			root = {
+				NOT = {
+					has_authority = auth_azur_lane_1
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = BRANCH_OFFICE_CRIMINAL_COOLDOWN
+		exists = owner
+		OR = {
+			root = {
+				is_criminal_syndicate = no
+			}
+			AND = {
+				root = {
+					is_criminal_syndicate = yes
+				}
+				NOT = {
+					has_planet_flag = criminal_branch_closed_cooldown_planet@root
+				}
+			}
+			# Azur Lane Stellaris DLC
+			root = {
+				NOT = {
+					has_authority = auth_azur_lane_1
+				}
+			}
+		}
+	}
+	# Warship Girls R And MIST Species
+	custom_tooltip = {
+		fail_text = requires_recipient_not_warshipgirls
+		OR = {
+			NOT = {
+			}
+			AND = {
+				exists = owner
+				owner = {
+					NOR = {
+						has_authority = auth_warshipgirls
+						AND = {
+							has_authority = auth_shenhai
+							OR = {
+								has_country_flag = pantsu_shop_origin
+								has_civic = civic_sh_criminal_syndicate
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	# Stellaris Evolved
+	if = {
+		limit = {
+			has_stellaris_evolved = yes
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_NOT_COOPERACORP
+			exists = owner
+			OR = {
+				owner = {
+					is_megacorp = no
+				}
+				AND = {
+					owner = {
+						is_megacorp = yes
+					}
+					root = {
+						has_valid_civic = civic_tec_corporate_cooperacorp
+					}
+				}
+				AND = {
+					owner = {
+						is_megacorp = yes
+						has_valid_civic = civic_tec_corporate_cooperacorp
+					}
+					root = {
+						NOT = {
+							has_valid_civic = civic_tec_corporate_cooperacorp
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				tec_branch_office_requires_commercial_pact = no
+			}
+			custom_tooltip = {
+				fail_text = BRANCH_OFFICE_TEC_NOT_RELATION
+				exists = owner
+				OR = {
+					this.owner = {
+						opinion_level = {
+							who = root
+							level >= good
+						}
+					}
+					owner = {
+						is_in_federation_with = root
+					}
+					# allow branch offices in subsidiaries and vice versa
+					root = {
+						is_subject = yes
+						overlord = {
+							is_same_value = prevprev.owner
+						}
+					}
+					owner = {
+						is_subject = yes
+						overlord = {
+							is_same_value = root
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_PARASITE_HAS_TRUCE
+			exists = owner
+			OR = {
+				root = {
+					tec_is_parasite_hivemind = no
+				}
+				owner = {
+					NOR = {
+						has_truce = root
+						is_at_war_with = root
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_PARASITE_COOLDOWN
+			exists = owner
+			OR = {
+				root = {
+					tec_is_parasite_hivemind = no
+				}
+				AND = {
+					root = {
+						tec_is_parasite_hivemind = yes
+					}
+					NOT = {
+						has_planet_flag = parasite_branch_closed_cooldown_planet@root
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_NOT_OWN
+			exists = owner
+			owner = {
+				NOT = {
+					is_same_value = root
+				}
+			}
+		}
+	}
+	# More Corportate Authorities
+	# principled rogues won't build branch offices in countries they like
+	hidden_trigger = {
+		OR = {
+			NOT = {
+				root = {
+					has_ai_personality = principled_rogues
+					is_ai = yes
+				}
+			}
+			owner = {
+				their_opinion = {
+					who = root
+					value < 0
+				}
+			}
+			owner = {
+				their_opinion = {
+					who = root
+					value < 20
+				}
+				NOT = {
+					has_opinion_modifier = {
+						who = root
+						modifier = opinion_new_contact
+						is_reverse = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# This = country
+# Checked by is_criminal_syndicate trigger
+is_criminal_syndicate_rule = {
+	OR = {
+		AND = {
+			is_megacorp = yes
+			OR = {
+				has_valid_civic = civic_criminal_heritage
+				# The Empty Vagrant
+				has_valid_civic = civic_ev_criminal_ship
+			}
+		}
+		tec_is_parasite_hivemind = yes
+	}
+}

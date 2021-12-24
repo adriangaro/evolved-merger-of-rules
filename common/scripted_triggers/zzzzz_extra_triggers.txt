@@ -1,0 +1,16 @@
+tec_branch_office_requires_commercial_pact = {
+	exists = owner
+	root = {
+		NAND = {
+			is_regular_empire = yes
+			tec_is_trade_gestalt = yes
+		}
+	}
+	owner = {
+		OR = {
+			is_regular_empire = yes
+			tec_is_trade_gestalt = yes
+		}
+	}
+}
+
