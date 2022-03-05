@@ -1,0 +1,100 @@
+[h1][b] Updated to 3.2.* [/b][/h1]
+[b] External compatibility patch for Merger of Rules and Stellaris Evolved [/b]
+
+[b] Join the discord for news, updates and feedback! [/b]
+https://discord.gg/bH5XTGVDPZ
+
+[b] If you find a bug, report it on the [url=https://discord.gg/bH5XTGVDPZ]Discord[/url] or in this [url=https://steamcommunity.com/workshop/filedetails/discussion/2602025201/5040080777776911457]Steam Discussion[/url] [/b]
+
+
+[h1] ▶️ Description ◀️ [/h1]
+External compatibility patch for Merger of Rules and Stellaris Evolved
+
+[h1] ⚠️ Load Order ⚠️ [/h1]
+Should not matter as file names sort load order prioritites, but still:
+[olist]
+    [*]Other mods
+    [*]Stellaris Evolved
+    [*]! Merger of Rules 3.2
+    [*]! Merger of Rules - Stellaris Evolved
+[/olist]
+
+[h1] ⚠️ List of Overwrites ⚠️ [/h1]
+[b] Game Rules: [/b]
+[list]
+    [*]can_generate_leader_from_pop
+    [*]can_generate_leader_from_species
+    [*]species_has_happiness
+    [*]can_species_procreate
+    [*]can_species_be_assembled
+    [*]can_build_branch_offices
+    [*]can_support_branch_offices
+    [*]can_build_branch_office_on_planet
+    [*]is_criminal_syndicate_rule
+[/list]
+[b] Policies: [/b]
+[list]
+    [*]diplomatic_stance
+    [*]war_philosophy
+    [*]orbital_bombardment
+    [*]border_policy
+    [*]artificial_intelligence_policy
+    [*]robot_pop_policy
+[/list]
+[b] Triggers: [/b]
+
+# Vanilla
+[list]
+    [*]has_upgraded_capital
+    [*]has_major_upgraded_capital
+    [*]has_fully_upgraded_capital
+    [*]is_megacorp
+    [*]is_regular_empire
+    [*]has_encountered_other_species
+	[*]colonizable_planet
+	[*]is_country_type_with_subjects
+    [*]is_autocracy
+[/list]
+
+# Merger of Rules
+[list]
+	[*]has_ethics_classic
+	[*]has_stellaris_evolved
+    [*]merg_is_standard_empire
+    [*]merg_is_default_empire
+	[*]merg_has_cloning_building
+[/list]
+
+# Other Mods
+[list]
+	[*]ehof_default_country
+	[*]is_zofe_compatible
+	[*]giga_habitable_structure
+	[*]is_memeable_space_habitat
+	[*]mem_is_spherical_world
+	[*]has_gene_clinic
+	[*]kuat_is_common_country
+	[*]is_playable_country
+	[*]CmtTriggerIsPlayableEmpire
+	[*]CmtTriggerIsEmpire
+	[*]exalted_is_valid_as_vassal
+	[*]is_open_gestalt
+	[*]is_default_and_fallen_country
+	[*]is_default_country_wg
+[/list]
+
+# Stellaris Evolved
+[list]
+    [*]tec_is_psionic_pop
+    [*]tec_is_total_psionic_pop
+    [*]tec_is_default_country
+    [*]tec_is_ringworld
+	[*]tec_is_default_country
+[/list]
+
+
+[b] Not IRONMAN compatible [/b]
+[b] Not SAVEGAME compatible [/b]
+
+
+[url=https://discord.gg/bHVez2C][img]https://i.imgur.com/4Und3QN.png[/img][/url]

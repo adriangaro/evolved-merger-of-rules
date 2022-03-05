@@ -10,18 +10,19 @@ is_megacorp = {
 		has_authority = auth_tec_ai_corporate
 		# Warship Girls R And MIST Species
 		has_authority = auth_warshipgirls
+		# Stellaris Evolved
+		has_authority = auth_tec_patrocorporate
 		# More Authorities
+		has_government = gov_imperial_domain_megacorp
 		has_authority = auth_corporate_imperial # Also in E&C Bug Branch
 		# Ethics and Civics - Bug Branch
-		has_authority = auth_corporate_democratic
+		has_authority = auth_bugged_corporate_democratic
+		has_authority = auth_bugged_corporate_imperial
 		# Expanded Traits, Civics, Pops, and More
 		has_authority = auth_private
 		has_authority = auth_cooperative # Also More Corporate Authorities
 		# Expanded Gestalts: Forgotten Queens
 		has_valid_civic = civic_mutualistic_behavior
-		has_valid_civic = civic_machine_trading
-		# Arknights Near Future
-		has_valid_civic = civic_city_enterprise
 		# More Corporate Authorities
 		has_authority = auth_corporate_fiefdom
 	}
@@ -45,6 +46,10 @@ is_regular_empire = {
 		# Human Fallen Empire
 		is_country_type = human_fallen_empire
 		is_country_type = hfe_pirate
+		# Merger of Rules
+		# prevents these special countries from destroying their own buildings and districts in their colonies
+		is_country_type = gate_builders
+		is_country_type = awakened_marauders
 	}
 	NOT = { has_ethic = ethic_gestalt_consciousness	}
 }
@@ -60,9 +65,8 @@ has_encountered_other_species = {
 		has_valid_civic = civic_symbiotic_race
 		has_valid_civic = civic_slave_race
 		# Ethics & Civics: Bug Branch
-		has_valid_civic = civic_evolutionary_architects
-		has_valid_civic = civic_slave_race_corpo
-		has_valid_civic = civic_evolutionary_architects_corpo
+		is_bugged_evolutionary_architects = yes
+		is_bugged_slave_race = yes
 		# Vanilla
 		num_communications > 0
 		any_owned_pop = {
@@ -73,6 +77,129 @@ has_encountered_other_species = {
 				has_trait = "trait_tec_bioservant"
 			}
 		}
+	}
+}
+
+habitable_planet = {
+	OR = {
+		is_planet_class = pc_desert
+		is_planet_class = pc_tropical
+		is_planet_class = pc_arid
+		is_planet_class = pc_continental
+		is_planet_class = pc_ocean
+		is_planet_class = pc_tundra
+		is_planet_class = pc_arctic
+		is_planet_class = pc_alpine
+		is_planet_class = pc_savannah
+		is_planet_class = pc_gaia
+		is_planet_class = pc_relic
+		is_planet_class = pc_city
+		is_planet_class = pc_hive
+		# Planetary Diversity
+		is_planet_class = pc_pdshroud
+		is_planet_class = pc_cascadian
+		is_planet_class = pc_desertislands
+		is_planet_class = pc_subarctic
+		is_planet_class = pc_mangrove
+		is_planet_class = pc_wetswamp
+		is_planet_class = pc_fog
+		is_planet_class = pc_hajungle
+		is_planet_class = pc_cenote
+		is_planet_class = pc_biolumen
+		is_planet_class = pc_steppe
+		is_planet_class = pc_sandsea
+		is_planet_class = pc_oasis
+		is_planet_class = pc_mesa
+		is_planet_class = pc_badlands
+		is_planet_class = pc_outback
+		is_planet_class = pc_coastal
+		is_planet_class = pc_swamp
+		is_planet_class = pc_mud
+		is_planet_class = pc_basalt
+		is_planet_class = pc_frozen_desert
+		is_planet_class = pc_glacial
+		is_planet_class = pc_hadesert
+		is_planet_class = pc_prairie
+		is_planet_class = pc_veld
+		is_planet_class = pc_semiarid
+		is_planet_class = pc_med
+		is_planet_class = pc_boreal
+		is_planet_class = pc_mushroom
+		is_planet_class = pc_ammonia
+		is_planet_class = pc_sulfur
+		is_planet_class = pc_acid
+		is_planet_class = pc_methane
+		is_planet_class = pc_geothermal
+		is_planet_class = pc_superhabitable
+		is_planet_class = pc_tidallylocked
+		is_planet_class = pc_supercon
+		is_planet_class = pc_floating
+		is_planet_class = pc_crucible
+		is_planet_class = pc_shroud_crucible
+		is_planet_class = pc_clean_crucible
+		is_planet_class = pc_crystal
+		is_planet_class = pc_technoorganic
+		is_planet_class = pc_graveyard
+		is_planet_class = pc_antarctic
+		is_planet_class = pc_aeolian
+		is_planet_class = pc_snow
+		is_planet_class = pc_highland
+		is_planet_class = pc_duneforest
+		is_planet_class = pc_retinal
+		is_planet_class = pc_forest
+		is_planet_class = pc_lake
+		is_planet_class = pc_tepid
+		is_planet_class = pc_irradiated
+		is_planet_class = pc_karst
+		is_planet_class = pc_reef
+		is_planet_class = pc_ash
+		is_planet_class = pc_primal
+		is_planet_class = pc_aquatic
+		is_planet_class = pc_aquatic_uw
+		is_planet_class = pc_salt
+		is_planet_class = pc_aquifer
+		is_planet_class = pc_coral
+		is_planet_class = pc_storm
+		is_planet_class = pc_rogue
+		is_planet_class = pc_lichen
+		is_planet_class = pc_eyeball
+		is_planet_class = pc_glacio
+		is_planet_class = pc_lanthanide
+		is_planet_class = pc_megaflora
+		is_planet_class = pc_megaflorahive
+		is_planet_class = pc_megafloratol
+		is_planet_class = pc_pdhive1
+		is_planet_class = pc_pdhive2
+		is_planet_class = pc_bioforge
+		is_planet_class = pc_biocapital
+		is_planet_class = pc_biofort
+		is_planet_class = pc_tidallygaia
+		is_planet_class = pc_tidallyaquatic
+		is_planet_class = pc_hot_gaia
+		is_planet_class = pc_cold_gaia
+		# Warship Girls R And MIST Species
+		is_planet_class = pc_wsg_port
+		is_planet_class = pc_shenhai
+		# SW: UnknownWorld Shipgirls Story
+		is_planet_class = pc_swgs_engineer
+		is_planet_class = pc_swgs_engineer_ringworld_habitable
+		# Gigastructures
+		is_planet_class = pc_ll_temperate
+		is_planet_class = pc_ll_foggy
+		is_planet_class = pc_ll_torrid
+		# Real Space - New Frontiers / Expanded Gestalts: Forgotten Queens
+		is_planet_class = pc_hollow
+		# Giga Diversity
+		is_planet_class = pc_ll_methane
+		is_planet_class = pc_ll_ash
+		is_planet_class = pc_ll_sulfur
+		is_planet_class = pc_ll_ammonia
+		is_planet_class = pc_ll_ocean
+		is_planet_class = pc_ll_tidallylocked_cold
+		is_planet_class = pc_ll_tidallylocked
+		is_planet_class = pc_ll_rogue
+		# Stellaris Evolved
+		is_planet_class = pc_tec_protoworld
 	}
 }
 
@@ -104,6 +231,19 @@ colonizable_planet = {
 		}
 		# Endless Frontier
 		is_planet_class = pc_mzilli_shadow
+		# ACOT
+		is_planet_class = pc_dark_fractured
+		is_planet_class = pc_dark_fractured_ae
+		is_planet_class = pc_acot_enigmopolis
+		### SOFE
+		is_planet_class = pc_golden_world
+        is_planet_class = pc_golden_world_habitable
+        is_planet_class = pc_omega_ringworld_habitable
+        is_planet_class = pc_omega_ringworld_seam
+		is_planet_class = pc_omega_ringworld_tech
+		is_planet_class = pc_goodman_gaia_world
+        is_planet_class = pc_golden_fortress
+		is_planet_class = pc_sosi_proto_gaia_world	
 		# Stellaris Evolved
 		is_planet_class = pc_tec_protoworld
 	}
@@ -147,5 +287,268 @@ is_autocracy = { #Power of one
 		has_authority = auth_private
 		# More Corporate Authorities
 		has_authority = auth_corporate_fiefdom
+		# Ethics and Civics Bug Branch
+		has_authority = auth_bugged_corporate_imperial
+	}
+}
+
+can_fill_worker_job = {
+	custom_tooltip = WORKER_JOB_TRIGGER
+	hidden_trigger = {
+		NOT = { has_ethic = ethic_gestalt_consciousness }
+		exists = owner
+		OR = {
+			is_being_purged = no
+			# Expanded Traits, Civics, Pops, and More
+			if = {
+				limit = { has_expanded_pops = yes }
+				OR = {		
+					has_purge_type = { type = purge_displacement }
+					has_purge_type = { type = purge_neutering }
+				}
+			}
+		}
+		is_being_assimilated = no
+		NOT = { has_citizenship_type = { type = citizenship_organic_trophy } }
+		NAND = {
+			has_citizenship_type = { type = citizenship_slavery }
+			OR = {
+				has_slavery_type = { type = slavery_livestock }
+				has_slavery_type = { type = slavery_matrix }
+			}
+		}
+		if = {
+			limit = {
+				divinity_right_to_work_job_check_trigger_exempt = no
+			}
+			divinity_right_to_work_job_check_trigger_worker = yes
+		}
+		# Diagraphers Trait mod
+		if = {
+			limit = {
+				has_diag_trait = yes
+			}
+			OR = {
+				traits_restrict_worker_jobs = no
+				has_pop_flag = allow_technician_traits
+				has_pop_flag = allow_miner_traits
+				has_pop_flag = allow_farmer_traits
+				has_pop_flag = allow_clerk_traits
+				has_pop_flag = allow_soldier_traits
+				has_pop_flag = allow_crystal_miner_traits
+				has_pop_flag = allow_mote_harvester_traits
+				has_pop_flag = allow_gas_extractor_traits
+				has_pop_flag = allow_priest_traits
+				has_pop_flag = allow_bluelotus_technician_traits
+				has_pop_flag = allow_odd_factory_worker_traits
+				has_pop_flag = allow_cave_cleaner_traits
+				has_pop_flag = allow_titan_hunter_traits
+			}
+		}
+	}
+}
+
+#this/root = pop
+#checked if job's possible_precalc = can_fill_specialist_job
+can_fill_specialist_job = {
+	custom_tooltip = SPECIALIST_JOB_TRIGGER
+	hidden_trigger = {
+		NOT = { has_ethic = ethic_gestalt_consciousness }
+		exists = owner
+		OR = {
+			is_enslaved = no
+			has_slavery_type = { type = slavery_indentured }
+			# Expanded Traits, Civics, Pops, and More
+			AND = {
+				has_expanded_pops = yes
+				NOT = { host_has_dlc = "Utopia" }
+				is_same_species = owner_main_species
+				owner = {
+					OR = {
+						has_valid_civic = civic_indentured_assets
+						has_valid_civic = civic_slaver_guilds
+					}
+				}
+			}
+		}
+		is_being_purged = no
+		is_being_assimilated = no
+		NOR = {
+			has_trait = trait_syncretic_proles
+			has_trait = trait_nerve_stapled
+			has_trait = trait_presapient_docile_livestock
+			# Diagraphers Trait mod
+			has_trait = trait_subsapient_form
+			# Expanded Traits, Civics, Pops, and More
+			has_trait = trait_tree_caretaker
+			# Ethics and Civics Alternative - Redux
+			has_trait = trait_slave_gene
+		}
+		OR = {
+			NOT = { has_trait = trait_mechanical }
+			owner = { has_technology = tech_droid_workers }
+		}
+		NOT = { has_citizenship_type = { type = citizenship_organic_trophy } }
+		if = {
+			limit = {
+				divinity_right_to_work_job_check_trigger_exempt = no
+			}
+			divinity_right_to_work_job_check_trigger_specialist = yes
+		}
+		# Stellaris Evolved
+		OR = {
+			NOT = { has_trait = trait_tec_bioservant }
+			owner = { has_technology = tech_tec_bioservant_2 }
+		}
+		# Diagraphers Trait mod
+		if = {
+			limit = {
+				has_diag_trait = yes
+			}
+			OR = {
+				traits_restrict_specialist_jobs = no
+				has_pop_flag = allow_priest_traits
+				has_pop_flag = allow_researcher_traits
+				has_pop_flag = allow_foundry_traits
+				has_pop_flag = allow_enforcer_traits
+				has_pop_flag = allow_artisan_traits
+				has_pop_flag = allow_entertainer_traits
+				has_pop_flag = allow_duelist_traits
+				has_pop_flag = allow_culture_worker_traits
+				has_pop_flag = allow_bureaucrat_traits
+				has_pop_flag = allow_chemist_traits
+				has_pop_flag = allow_translucer_traits
+				has_pop_flag = allow_gas_refiner_traits
+				has_pop_flag = allow_roboticist_traits
+				has_pop_flag = allow_healthcare_traits
+				has_pop_flag = allow_manager_traits
+				has_pop_flag = allow_necromancer_traits
+				has_pop_flag = allow_underground_trade_worker_traits
+				has_pop_flag = allow_dimensional_portal_researcher_traits
+				has_pop_flag = allow_gas_plant_engineer_traits
+				has_pop_flag = allow_robot_caretaker_traits
+				planet = { has_building = building_colony_shelter }
+			}
+		}
+	}
+}
+
+
+#this/root = pop
+#checked if job's possible_precalc = can_fill_ruler_job
+can_fill_ruler_job = {
+	if = {
+		limit = {
+			exists = owner
+			owner = {
+				has_origin = origin_necrophage
+				has_trait = trait_necrophage
+			}
+		}
+		custom_tooltip = {
+			text = RULER_JOB_NECROPHAGE_TRIGGER
+			has_trait = trait_necrophage
+			is_enslaved = no
+			is_being_purged = no
+			is_being_assimilated = no
+			NOR = {
+				has_trait = trait_syncretic_proles
+				has_trait = trait_nerve_stapled
+				has_trait = trait_zombie
+				# Diagraphers Trait mod
+				has_trait = trait_subsapient_form
+				# Ethics and Civics Alternative - Redux
+				has_trait = trait_symbiotic
+				has_trait = trait_slave_gene
+			}
+		}
+	}
+	else_if = {	# Evolved - wip
+		limit = {
+			has_stellaris_evolved = yes
+			exists = owner
+			owner = {
+				has_origin = origin_tec_slavetothesystem
+				has_trait = trait_mechanical
+			}
+		}
+		custom_tooltip = {
+			text = RULER_JOB_NECROPHAGE_TRIGGER
+			has_trait = trait_mechanical
+			is_enslaved = no
+			is_being_purged = no
+			is_being_assimilated = no
+		}
+	}
+	# Silfae's Portraits: Revisited - Holofrixit Revisited
+	else_if = {
+		limit = {
+			has_holofrixit = yes
+			exists = owner
+			owner = {
+				is_gestalt = no
+				has_origin = origin_holofrixit
+				has_trait = trait_holooverseer
+			}
+		}
+		can_fill_holosphere_ruler_job = yes
+	}
+	else = {
+		custom_tooltip = RULER_JOB_TRIGGER
+		hidden_trigger = {
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			exists = owner
+			is_enslaved = no
+			is_being_purged = no
+			is_being_assimilated = no
+			NOR = {
+				has_trait = trait_syncretic_proles
+				has_trait = trait_nerve_stapled
+				has_trait = trait_presapient_docile_livestock
+				# Diagraphers Trait mod
+				has_trait = trait_subsapient_form
+				# Expanded Traits, Civics, Pops, and More
+				has_trait = trait_tree_caretaker
+				# Ethics and Civics Alternative - Redux
+				has_trait = trait_symbiotic
+				has_trait = trait_slave_gene
+			}
+			OR = {
+				NOT = { has_trait = trait_mechanical }
+				AND = {
+					owner = { has_technology = tech_synthetic_workers }
+					owner = { has_policy_flag = ai_full_rights }
+				}
+			}
+			NOT = { has_citizenship_type = { type = citizenship_organic_trophy } }
+			if = {
+				limit = {
+					divinity_right_to_work_job_check_trigger_exempt = no
+				}
+				divinity_right_to_work_job_check_trigger_ruler = yes
+			}
+		}
+	}
+	# # Diagraphers Trait mod
+	# else = {
+	# 	hidden_trigger = {
+	# 		has_holofrixit = yes
+	# 		NAND = {
+	# 			has_trait = trait_dimorphic_female
+	# 			has_reproductive_politics = yes
+	# 			owner = {
+	# 				has_valid_civic = civic_patriarchy
+	# 			}
+	# 		}
+	# 		OR = {
+	# 			traits_restrict_specialist_jobs = no
+	# 			has_pop_flag = allow_priest_traits
+	# 			has_pop_flag = allow_researcher_traits
+	# 			has_pop_flag = allow_administrator_traits
+	# 			has_pop_flag = allow_merchant_traits
+	# 			has_pop_flag = allow_executive_traits
+	# 			owner = { has_valid_civic = civic_aristocratic_elite }
+	# 		}
+	# 	}
 	}
 }

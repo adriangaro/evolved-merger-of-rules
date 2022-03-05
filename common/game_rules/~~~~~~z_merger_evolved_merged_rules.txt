@@ -6,10 +6,21 @@
 #Root = country
 #This = pop
 can_generate_leader_from_pop = {
-	has_citizenship_rights = yes
+	OR = {
+		has_citizenship_rights = yes
+		# Holofrixit Revisited / Silfae's Portraits: Revisited
+		species = {
+			has_species_flag = allow_leaders_organic_advisors@prev.owner
+			has_citizenship_type = {
+				type = citizenship_organic_trophy
+				country = prev.owner
+			}
+		}
+	}
 	NOR = {
 		has_trait = trait_syncretic_proles
 		has_trait = trait_nerve_stapled
+		has_trait = trait_zombie
 		# Rogue Maid (Rogue Servitor Completely Remake)
 		has_trait = trait_working_machine
 		# Plentiful Perks
@@ -41,13 +52,9 @@ can_generate_leader_from_pop = {
 				has_technology = tech_synthetic_leaders
 				has_authority = auth_machine_intelligence
 				is_mechanical_empire = yes
-				# Girls Frontline
-				root = {
-					has_technology = tech_mind_plus
-				}
 			}
 		}
-		# Holofrixit Revisited
+		# Holofrixit Revisited / Silfae's Portraits: Revisited
 		ROOT = {
 			has_origin = origin_holofrixit
 			PREV.species = {
@@ -57,8 +64,8 @@ can_generate_leader_from_pop = {
 					}
 					has_trait = trait_holooverseer
 					has_trait = trait_hologanglion
-					# has_trait = trait_holowarrior
-					# has_trait = trait_holowarrior_2
+					has_trait = trait_holowarrior
+					has_trait = trait_holowarrior_2
 				}
 			}
 		}
@@ -165,7 +172,7 @@ species_has_happiness = {
 					}
 				}
 				AND = {
-					has_global_flag = extended_synths_on
+					has_animated_synth = yes
 					NOT = {
 						from = {
 							has_authority = auth_machine_intelligence
@@ -193,11 +200,57 @@ species_has_happiness = {
 			}
 		}
 		AND = {
-			has_trait = trait_cybernetic
+			has_trait = trait_tec_bioservant
+			exists = from
+			OR = {
+				NOT = {
+					exists = from
+				}
+				from = {
+					has_authority = auth_hive_mind
+				}
+				from = {
+					has_policy_flag = intelligent_bioservants_outlawed
+				}
+				from = {
+					NOT = {
+						has_technology = tech_tec_bioservant_3
+					}
+				}
+			}
+		}
+		AND = {
+			tec_is_cyborg_pop = yes
 			exists = from
 			from = {
-				has_authority = auth_machine_intelligence
-				has_civic = civic_machine_assimilator				# Assimilator empire
+				OR = {
+					AND = {
+						has_authority = auth_machine_intelligence
+						has_civic = civic_machine_assimilator						# Assimilator empire
+					}
+					AND = {
+						has_authority = auth_hive_mind
+						has_civic = civic_tec_hive_cybernetic
+					}
+				}
+			}
+		}
+		# Mindflayers
+		AND = {
+			exists = from
+			NOR = {
+				has_citizenship_type = {
+					type = citizenship_purge
+					country = from
+				}
+				has_slavery_type = {
+					# They do realise they are being eaten alive
+					type = slavery_livestock
+					country = from
+				}
+			}
+			from = {
+				has_valid_civic = civic_tec_hive_mindflayers
 			}
 		}
 	}
@@ -225,11 +278,9 @@ can_species_procreate = {
 			}
 			has_trait = trait_hive_mind
 		}
-		# Girls Frontline
-		has_trait = trait_doll
 		# Human Fallen Empires
 		has_trait = hfe_species_trait_brainworm
-		# Holofrixit Revisited
+		# Holofrixit Revisited / Silfae's Portraits: Revisited
 		has_trait = trait_hologanglion
 		# Expanded Gestalts
 		has_trait = trait_hive_mind_overlord
@@ -285,6 +336,18 @@ can_species_procreate = {
 		exists = root.owner
 		root.owner = {
 			has_artificial_wombs = no
+		}
+	}
+	# Expanded Events
+	if = {
+		limit = {
+			has_trait = trait_tree_caretaker
+		}
+		root = {
+			OR = {
+				has_deposit = d_tree_of_life_colony
+				has_deposit = d_tree_of_life_home
+			}
 		}
 	}
 	NOT = {
@@ -377,14 +440,21 @@ can_species_be_assembled = {
 					}
 				}
 				# Stellaris Evolved
-				if = {
-					limit = {
-						tec_is_self_replicating_pop = yes
-					}
-					any_owned_species = {
-						is_exact_same_species = prevprev
+				OR = {
+					has_stellaris_evolved = no
+					if = {
+						limit = {
+							prev = {
+								tec_is_self_replicating_pop = yes
+							}
+						}
+						any_owned_species = {
+							is_exact_same_species = prevprev
+						}
 					}
 				}
+				
+				
 			}
 		}
 		# Organics - this is the vanilla version
@@ -395,10 +465,8 @@ can_species_be_assembled = {
 				limit = {
 					OR = {
 						has_trait = trait_plantoid_budding
-						AND = {
-							# Stellaris Evolved
-							tec_is_self_replicating_pop = yes							# This includes budding
-						}
+						# Stellaris evolved
+						tec_is_self_replicating_pop = yes
 					}
 				}
 				root = {
@@ -426,12 +494,12 @@ can_species_be_assembled = {
 					}
 				}
 				# Stellaris Evolved
-				root = {
+				root = { 
 					OR = {
 						has_stellaris_evolved = no
 						tec_can_assemble_organic_hive_species = yes
 					}
-				}
+				}	
 			}
 			# Expanded Traits, Civics, Pops, and More
 			else_if = {
@@ -458,6 +526,7 @@ can_species_be_assembled = {
 					OR = {
 						has_trait = trait_clone_soldier_infertile
 						has_trait = trait_clone_soldier_infertile_full_potential
+						# Stellaris evolved
 						tec_is_clone_origin_pop = yes
 					}
 				}
@@ -465,6 +534,7 @@ can_species_be_assembled = {
 					# Event 'clones.3' should cover this, but extra safety check.
 					OR = {
 						has_building = building_clone_army_clone_vat
+						# Stellaris evolved
 						tec_has_clone_origin_buildings = yes
 					}
 					# Trigger with the clone origin buildings, actually only including the vanilla one
@@ -501,21 +571,35 @@ can_species_be_assembled = {
 					}
 				}
 			}
+			# Nirvana Empire Project
+			else_if = {
+				limit = {
+					root.owner = {
+						OR = {
+							has_valid_civic = civic_nirvana_empire_dragon
+							has_valid_civic = civic_nirvana_empire_council
+						}
+					}
+					is_same_species = root.owner
+				}
+				root = { check_modifier_value = { modifier = planet_pop_assembly_organic_add value > 0 } }
+			}
+			# Vanilla
+			else_if = {
+				limit = {
+					root.owner = { has_civic = civic_permanent_employment }
+				}
+				root = {
+					has_building = building_posthumous_employment_center
+				}
+			}
 			else = {
 				# Regular assembly
 				OR = {
 					root = {
 						merg_has_cloning_building = yes
-						OR = {
-							has_anz_cloning = no
-							# ANZ Advanced Cloning
-							AND = {
-								has_anz_cloning = yes
-								NOT = {
-									has_modifier = planet_cloning_limits
-								}
-							}
-						}
+						# ANZ Advanced Cloning
+						NOT = { has_modifier = planet_cloning_limits }
 					}
 					# The DAL Species Mod
 					is_archetype = DATEALIVE
@@ -569,13 +653,6 @@ can_species_be_assembled = {
 				}
 			}
 		}
-		# Girls Frontline
-		AND = {
-			has_trait = trait_doll
-			root.owner = {
-				has_authority = auth_commonwealth
-			}
-		}
 		AND = {
 			# Evolved - Bioservants rule - Can be assembled with bioservant facilities present
 			has_stellaris_evolved = yes
@@ -608,7 +685,11 @@ can_species_be_assembled = {
 	}
 	# Expanded Gestalts
 	NAND = {
-		root = { owner = { has_valid_civic = civic_machine_replicators } }
+		root = {
+			owner = {
+				has_valid_civic = civic_machine_replicators
+			}
+		}
 		has_trait = trait_machine_central
 	}
 	# Vanilla
@@ -747,12 +828,22 @@ can_support_branch_offices = {
 					has_ethic = ethic_gestalt_empathy
 				}
 			}
+			# Merger of Rules
+			NOR = {
+				is_country_type = gate_builders
+				is_country_type = awakened_marauders
+			}
 		}
 	}
 	else = {
 		custom_tooltip = {
 			fail_text = BRANCH_OFFICE_NOT_REGULAR_EMPIRE
 			is_regular_empire = yes
+			# Merger of Rules
+			NOR = {
+				is_country_type = gate_builders
+				is_country_type = awakened_marauders
+			}
 		}
 	}
 }
@@ -831,9 +922,11 @@ can_build_branch_office_on_planet = {
 					is_country_type = hfe_pirate
 					is_forced_friendly = prev.owner
 				}
+				# Stellaris Evolved
 				root = {
 					tec_is_parasite_hivemind = yes
 				}
+				root = { tec_is_parasite_machine = yes }
 				# Vanilla
 				# allow branch offices in subsidiaries and vice versa
 				root = {
@@ -841,13 +934,9 @@ can_build_branch_office_on_planet = {
 					OR = {
 						is_subject_type = subsidiary
 						# Reworked Advanced Ascension
-						is_subject_type = subsidiary2
+						is_subject_type = AAR_SBJ_subsidiary
 						# Stellaris Evolved
 						tec_is_symbiotic_gestalt = yes
-						# Warship Girls R And MIST Species
-						overlord = {
-							has_authority = auth_warshipgirls
-						}
 					}
 					overlord = {
 						is_same_value = prevprev.owner
@@ -858,7 +947,9 @@ can_build_branch_office_on_planet = {
 					OR = {
 						is_subject_type = subsidiary
 						# Reworked Advanced Ascension
-						is_subject_type = subsidiary2
+						is_subject_type = AAR_SBJ_subsidiary
+						# Warship Girls R And MIST Species
+						overlord = { has_authority = auth_warshipgirls }
 						# Stellaris Evolved
 						root = {
 							tec_is_symbiotic_gestalt = yes
@@ -953,26 +1044,43 @@ can_build_branch_office_on_planet = {
 	# Warship Girls R And MIST Species
 	custom_tooltip = {
 		fail_text = requires_recipient_not_warshipgirls
-		OR = {
-			NOT = {
-			}
-			AND = {
-				exists = owner
-				owner = {
-					NOR = {
-						has_authority = auth_warshipgirls
-						AND = {
-							has_authority = auth_shenhai
-							OR = {
-								has_country_flag = pantsu_shop_origin
-								has_civic = civic_sh_criminal_syndicate
-							}
-						}
+		exists = owner
+		owner = {
+			NOR = {
+				has_authority = auth_warshipgirls 
+				AND = {
+					has_authority = auth_shenhai
+					OR = {
+						has_country_flag = pantsu_shop_origin
+						has_valid_civic = civic_sh_criminal_syndicate
 					}
 				}
 			}
 		}
 	}
+
+	# More Corportate Authorities
+	# principled rogues won't build branch offices in countries they like
+	hidden_trigger = {
+		OR = {
+			NOT = {
+				root = {
+					has_ai_personality = principled_rogues
+					is_ai = yes
+				}
+			}	
+			owner = {
+				their_opinion = { who = root value < 0 }
+			}
+			owner = {
+				their_opinion = { who = root value < 20 }
+				NOT = {
+					has_opinion_modifier = { who = root modifier = opinion_new_contact is_reverse = yes }
+				}
+			}
+		}
+	}
+	
 	# Stellaris Evolved
 	if = {
 		limit = {
@@ -1013,7 +1121,10 @@ can_build_branch_office_on_planet = {
 			custom_tooltip = {
 				fail_text = BRANCH_OFFICE_TEC_NOT_RELATION
 				exists = owner
-				OR = {
+				OR = {	
+					root = { is_criminal_syndicate = yes }
+					root = { tec_is_parasite_hivemind = yes }
+					root = { tec_is_parasite_machine = yes }
 					this.owner = {
 						opinion_level = {
 							who = root
@@ -1081,37 +1192,6 @@ can_build_branch_office_on_planet = {
 			}
 		}
 	}
-	# More Corportate Authorities
-	# principled rogues won't build branch offices in countries they like
-	hidden_trigger = {
-		OR = {
-			NOT = {
-				root = {
-					has_ai_personality = principled_rogues
-					is_ai = yes
-				}
-			}
-			owner = {
-				their_opinion = {
-					who = root
-					value < 0
-				}
-			}
-			owner = {
-				their_opinion = {
-					who = root
-					value < 20
-				}
-				NOT = {
-					has_opinion_modifier = {
-						who = root
-						modifier = opinion_new_contact
-						is_reverse = yes
-					}
-				}
-			}
-		}
-	}
 }
 
 # This = country
@@ -1119,13 +1199,35 @@ can_build_branch_office_on_planet = {
 is_criminal_syndicate_rule = {
 	OR = {
 		AND = {
-			is_megacorp = yes
+			OR = {
+				is_megacorp = yes
+				has_valid_civic = civic_galactic_sovereign_megacorp
+			}
 			OR = {
 				has_valid_civic = civic_criminal_heritage
 				# The Empty Vagrant
 				has_valid_civic = civic_ev_criminal_ship
 			}
+			tec_is_parasite_hivemind = no
 		}
 		tec_is_parasite_hivemind = yes
 	}
+}
+
+#this/root = pop
+#checked if job's possible_precalc = can_fill_worker_job
+can_fill_worker_job = {
+	can_fill_worker_job = yes
+}
+
+#this/root = pop
+#checked if job's possible_precalc = can_fill_specialist_job
+can_fill_specialist_job = {
+	can_fill_specialist_job = yes
+}
+
+#this/root = pop
+#checked if job's possible_precalc = can_fill_ruler_job
+can_fill_ruler_job = {
+	can_fill_ruler_job = yes
 }

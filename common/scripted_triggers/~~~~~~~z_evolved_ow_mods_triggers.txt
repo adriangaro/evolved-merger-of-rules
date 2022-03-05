@@ -49,8 +49,252 @@ giga_habitable_structure = {
 		uses_district_set = acot_giga_void_sphere
 		uses_district_set = giga_alderson
 		is_planet_class = pc_pouchkinn_black_hole
-
+		# AOT
+		uses_district_set = phanon_macripp
+		# Evolved
 		uses_district_set = elysium_phase_2
+	}
+}
+
+# AOT trigger disallowing planetary shields to be shown
+is_memeable_space_habitat = {
+	OR = {
+		uses_district_set = habitat
+		habitable_structure = yes
+		is_ringworld = yes
+		merg_is_habitat = yes
+		merg_is_hab_ringworld = yes
+		# Gigastructural Engineering & More
+		uses_district_set = giga_planet
+		uses_district_set = penrose_ring
+		uses_district_set = giga_gas_giant_habitat
+		uses_district_set = giga_birch
+		uses_district_set = virtual_ring
+		uses_district_set = virtual_ring_industry
+		uses_district_set = acot_giga_void_sphere
+		uses_district_set = giga_alderson
+		is_planet_class = pc_flat_world
+		# Evolved
+		uses_district_set = elysium_phase_2
+	}
+}
+
+# Doing the same for MEM shields
+mem_is_spherical_world = {
+	is_ringworld = no
+	NOR = {
+		uses_district_set = habitat
+		habitable_structure = yes
+		merg_is_habitat = yes
+		merg_is_hab_ringworld = yes
+		# Gigastructural Engineering & More
+		uses_district_set = giga_planet
+		uses_district_set = giga_gas_giant_habitat
+		uses_district_set = giga_birch
+		uses_district_set = virtual_ring
+		uses_district_set = virtual_ring_industry
+		uses_district_set = acot_giga_void_sphere
+		uses_district_set = giga_alderson
+		is_planet_class = pc_flat_world
+		# Evolved
+		uses_district_set = elysium_phase_2
+	}
+}
+
+# Starborn
+# Expanding Starborn trigger with ACOT/AOT gene clinics
+has_gene_clinic = {
+	OR = {
+		has_building = building_clinic
+		has_building = building_hospital
+		# Stellaris Evolved
+		has_building = building_hospital_2
+		# ACOT
+		has_building = building_fe_hospital
+		has_building = building_ae_hospital
+		# AOT
+		has_building = building_stellarite_hospital
+		has_building = building_phanon_hospital
+	}
+}
+
+# Star Wars: Kuat Ancient Empire
+kuat_is_common_country = {
+	OR = {
+		is_country_type = default
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+		is_country_type = awakened_marauders
+		is_country_type = primitive
+		is_country_type = ratlings
+		# is_country_type = prikki - they're now a default country
+		# ZOFE
+		is_country_type = lost_empire
+		# The Empty Vagrant
+		is_country_type = default_ev
+		is_country_type = fallen_empire_ev
+		# Human Fallen Empire
+		is_country_type = human_fallen_empire
+		is_country_type = hfe_pirate
+		
+		# Stellaris Expanded
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+	}
+}
+
+# ACOT
+is_playable_country = {
+	OR = {
+		is_country_type = default
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# ACOT
+		is_country_type = eternal_empire
+		is_country_type = original_empire_active
+		# The Empty Vagrant
+		is_country_type = default_ev
+		# Stellaris Expanded
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+	}
+}
+
+# Crisis stuff
+CmtTriggerIsPlayableEmpire = {
+	OR = {
+		is_country_type = default
+		is_ai = no
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# The Empty Vagrant
+		is_country_type = default_ev
+		# Stellaris Expanded
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+	}
+}
+
+CmtTriggerIsEmpire = {
+	OR = {
+		is_country_type = default
+		is_ai = no
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# The Empty Vagrant
+		is_country_type = default_ev
+		is_country_type = fallen_empire_ev
+		is_country_type = awakened_fallen_empire_ev
+		# Human Fallen Empire
+		is_country_type = human_fallen_empire
+		is_country_type = hfe_pirate
+		# Stellaris Expanded
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+	}
+}
+
+# Exalted Domination
+exalted_is_valid_as_vassal = {
+	OR = {
+		is_country_type = default
+		is_country_type = default_ev
+		# Stellaris Expanded
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+	}
+}
+
+# Expanded Traits, Civics, Pops, and More
+is_open_gestalt = {
+	OR = {
+		has_ai_personality = open_hive_mind
+		has_ai_personality = open_machine_intelligence
+		# Expanded Gestalts
+		has_valid_civic = civic_mutualistic_behavior
+		# Stellaris Evolved
+		has_valid_civic = civic_tec_machine_cooperators
+		has_valid_civic = civic_tec_hive_symbiotic
+		has_ethic = ethic_gestalt_empathy
+	}
+}
+
+# Warship Girls R and MIST Species
+is_default_and_fallen_country = {
+	OR = {
+		is_country_type = default
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# The Empty Vagrant
+		is_country_type = default_ev
+		is_country_type = fallen_empire_ev
+		is_country_type = awakened_fallen_empire_ev
+		# Human Fallen Empire
+		is_country_type = human_fallen_empire
+		is_country_type = hfe_pirate
+		# SW:KUAT ANCIENT EMPIRE
+		is_country_type = kuat_fallen_empire
+		is_country_type = kuat_awakened_fallen_empire
+		is_country_type = awakened_return_kuat_empire
+		# A Deadly Tempest
+		is_country_type = awakened_gate_builders
+		# Stellaris Expanded
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+	}
+}
+
+
+is_default_country_wg = {
+	OR = {
+		is_country_type = default
+		is_country_type = default_ev
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# Stellaris Expanded
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
+	}
+}
+
+# Reworked Advanced Ascension
+# Fixing the trigger and removing obsolete code
+AAR_trgr_cntr_playable = {
+	OR = {
+		is_country_type = default
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+		# The Empty Vagrant
+		is_country_type = fallen_empire_ev
+		# SW:KUAT ANCIENT EMPIRE
+		is_country_type = kuat_fallen_empire
+		is_country_type = kuat_awakened_fallen_empire
+		is_country_type = awakened_return_kuat_empire
+		# Human Fallen Empire
+		is_country_type = human_fallen_empire
+		# A Deadly Tempest
+		is_country_type = awakened_gate_builders
+		# ACOT
+		is_country_type = original_empire
+		is_country_type = original_empire_passive
+		is_country_type = original_empire_active
+		# ZOFE
+		is_country_type = ascended_empire
+		is_country_type = lost_empire
+		# Stellaris Expanded
+		is_country_type = default_exocolonist
+		is_country_type = default_exocolonist_ai
 	}
 }
 
@@ -87,5 +331,16 @@ tec_is_ringworld = {
 		uses_district_set = interstellar_ring
 		# Ancient Empire
 		uses_district_set = ag_ancient_ringworld
+		
+		merg_is_hab_ringworld = yes
+	}
+}
+
+tec_is_habitat = {
+	OR = {
+		uses_district_set = habitat
+		tec_is_pd_habitat_mimic_planet = yes
+
+		merg_is_habitat = yes
 	}
 }
