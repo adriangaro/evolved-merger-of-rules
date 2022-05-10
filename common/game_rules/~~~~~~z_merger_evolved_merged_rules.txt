@@ -282,7 +282,7 @@ species_has_happiness = {
 				NOT = {
 					exists = from
 				}
-				from = { is_hive_empire = yes 
+				from = { is_hive_empire = yes }
 				from = {
 					has_policy_flag = intelligent_bioservants_outlawed
 				}
