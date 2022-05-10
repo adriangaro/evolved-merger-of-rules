@@ -37,8 +37,7 @@ is_regular_empire = {
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# The Empty Vagrant
 		is_country_type = default_ev
 		is_country_type = fallen_empire_ev
@@ -51,7 +50,7 @@ is_regular_empire = {
 		is_country_type = gate_builders
 		is_country_type = awakened_marauders
 	}
-	NOT = { has_ethic = ethic_gestalt_consciousness	}
+	is_gestalt = no
 }
 
 has_encountered_other_species = {
@@ -61,6 +60,7 @@ has_encountered_other_species = {
 		has_civic = civic_machine_servitor
 		# Stellaris Evolved
 		has_country_flag = tec_has_encountered_other_species
+		has_valid_civic = civic_tec_se_symbiotic_race
 		# Ethics and Civics Classic and all its variants
 		has_valid_civic = civic_symbiotic_race
 		has_valid_civic = civic_slave_race
@@ -72,9 +72,11 @@ has_encountered_other_species = {
 		any_owned_pop = {
 			NOR = {
 				has_trait = "trait_mechanical"
-				is_same_species = prev
 				# Stellaris Evolved
 				has_trait = "trait_tec_bioservant"
+			}
+			NOT = {
+				is_same_species = prev
 			}
 		}
 	}
@@ -96,76 +98,6 @@ habitable_planet = {
 		is_planet_class = pc_city
 		is_planet_class = pc_hive
 		# Planetary Diversity
-		is_planet_class = pc_pdshroud
-		is_planet_class = pc_cascadian
-		is_planet_class = pc_desertislands
-		is_planet_class = pc_subarctic
-		is_planet_class = pc_mangrove
-		is_planet_class = pc_wetswamp
-		is_planet_class = pc_fog
-		is_planet_class = pc_hajungle
-		is_planet_class = pc_cenote
-		is_planet_class = pc_biolumen
-		is_planet_class = pc_steppe
-		is_planet_class = pc_sandsea
-		is_planet_class = pc_oasis
-		is_planet_class = pc_mesa
-		is_planet_class = pc_badlands
-		is_planet_class = pc_outback
-		is_planet_class = pc_coastal
-		is_planet_class = pc_swamp
-		is_planet_class = pc_mud
-		is_planet_class = pc_basalt
-		is_planet_class = pc_frozen_desert
-		is_planet_class = pc_glacial
-		is_planet_class = pc_hadesert
-		is_planet_class = pc_prairie
-		is_planet_class = pc_veld
-		is_planet_class = pc_semiarid
-		is_planet_class = pc_med
-		is_planet_class = pc_boreal
-		is_planet_class = pc_mushroom
-		is_planet_class = pc_ammonia
-		is_planet_class = pc_sulfur
-		is_planet_class = pc_acid
-		is_planet_class = pc_methane
-		is_planet_class = pc_geothermal
-		is_planet_class = pc_superhabitable
-		is_planet_class = pc_tidallylocked
-		is_planet_class = pc_supercon
-		is_planet_class = pc_floating
-		is_planet_class = pc_crucible
-		is_planet_class = pc_shroud_crucible
-		is_planet_class = pc_clean_crucible
-		is_planet_class = pc_crystal
-		is_planet_class = pc_technoorganic
-		is_planet_class = pc_graveyard
-		is_planet_class = pc_antarctic
-		is_planet_class = pc_aeolian
-		is_planet_class = pc_snow
-		is_planet_class = pc_highland
-		is_planet_class = pc_duneforest
-		is_planet_class = pc_retinal
-		is_planet_class = pc_forest
-		is_planet_class = pc_lake
-		is_planet_class = pc_tepid
-		is_planet_class = pc_irradiated
-		is_planet_class = pc_karst
-		is_planet_class = pc_reef
-		is_planet_class = pc_ash
-		is_planet_class = pc_primal
-		is_planet_class = pc_aquatic
-		is_planet_class = pc_aquatic_uw
-		is_planet_class = pc_salt
-		is_planet_class = pc_aquifer
-		is_planet_class = pc_coral
-		is_planet_class = pc_storm
-		is_planet_class = pc_rogue
-		is_planet_class = pc_lichen
-		is_planet_class = pc_eyeball
-		is_planet_class = pc_glacio
-		is_planet_class = pc_lanthanide
-		is_planet_class = pc_megaflora
 		is_planet_class = pc_megaflorahive
 		is_planet_class = pc_megafloratol
 		is_planet_class = pc_pdhive1
@@ -173,10 +105,9 @@ habitable_planet = {
 		is_planet_class = pc_bioforge
 		is_planet_class = pc_biocapital
 		is_planet_class = pc_biofort
-		is_planet_class = pc_tidallygaia
-		is_planet_class = pc_tidallyaquatic
-		is_planet_class = pc_hot_gaia
-		is_planet_class = pc_cold_gaia
+		is_pd_regular = yes
+		is_pd_gaia = yes
+		is_pd_rare = yes
 		# Warship Girls R And MIST Species
 		is_planet_class = pc_wsg_port
 		is_planet_class = pc_shenhai
@@ -213,6 +144,10 @@ colonizable_planet = {
 		habitable_structure = yes
 		habitable_planet = yes
 		is_artificial = yes
+		# ACOT
+		is_planet_class = pc_dark_fractured
+		is_planet_class = pc_dark_fractured_ae
+		is_planet_class = pc_acot_enigmopolis
 		# Planetary Diversity
 		is_planet_class = pc_pdshroud
 		is_planet_class = pc_irradiated
@@ -231,10 +166,6 @@ colonizable_planet = {
 		}
 		# Endless Frontier
 		is_planet_class = pc_mzilli_shadow
-		# ACOT
-		is_planet_class = pc_dark_fractured
-		is_planet_class = pc_dark_fractured_ae
-		is_planet_class = pc_acot_enigmopolis
 		### SOFE
 		is_planet_class = pc_golden_world
         is_planet_class = pc_golden_world_habitable
@@ -257,14 +188,57 @@ is_country_type_with_subjects = {
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# The Empty Vagrant
 		is_country_type = default_ev
 		# ACOT
 		is_country_type = original_empire
 		is_country_type = original_empire_passive
 		is_country_type = original_empire_active
+	}
+}
+
+is_democracy = {
+	#Power of many
+	OR = {
+		has_authority = auth_democratic
+		AND = {
+			has_authority = auth_corporate
+			is_egalitarian = yes
+		}
+		# More Authorities
+		has_authority = auth_strict_democratic
+		has_authority = auth_direct_democratic		# Also used by Stellaris Evolved
+		AND = {
+			has_authority = auth_democratic_dictatorship
+			is_egalitarian = yes
+		}
+		# Expanded Traits, Civics, Pops, and More
+		has_authority = auth_cooperative
+		# Ethics and Civics Bug Branch
+		has_authority = auth_bugged_direct_democratic
+		has_authority = auth_bugged_corporate_democratic
+
+		AND = {
+			tec_is_aiauth_empire = yes
+			is_egalitarian = yes
+		}
+	}
+}
+
+is_oligarchy = { #Power of few
+	OR = {
+		has_authority = auth_oligarchic
+		AND = {
+			has_authority = auth_corporate
+			is_egalitarian = no
+		}
+		AND = {
+			tec_is_aiauth_empire = yes
+			is_egalitarian = no
+			is_authoritarian = no
+		}
+		tec_is_aiauth_empire = yes
 	}
 }
 
@@ -289,6 +263,10 @@ is_autocracy = { #Power of one
 		has_authority = auth_corporate_fiefdom
 		# Ethics and Civics Bug Branch
 		has_authority = auth_bugged_corporate_imperial
+		AND = {
+			tec_is_aiauth_empire = yes
+			is_authoritarian = yes
+		}
 	}
 }
 
@@ -300,8 +278,8 @@ can_fill_worker_job = {
 		OR = {
 			is_being_purged = no
 			# Expanded Traits, Civics, Pops, and More
-			if = {
-				limit = { has_expanded_pops = yes }
+			AND = {
+				has_expanded_pops = yes
 				OR = {		
 					has_purge_type = { type = purge_displacement }
 					has_purge_type = { type = purge_neutering }
@@ -377,6 +355,7 @@ can_fill_specialist_job = {
 			has_trait = trait_syncretic_proles
 			has_trait = trait_nerve_stapled
 			has_trait = trait_presapient_docile_livestock
+			has_trait = trait_zombie
 			# Diagraphers Trait mod
 			has_trait = trait_subsapient_form
 			# Expanded Traits, Civics, Pops, and More
@@ -493,6 +472,31 @@ can_fill_ruler_job = {
 		}
 		can_fill_holosphere_ruler_job = yes
 	}
+	else_if = {
+		limit = {
+			has_holofrixit = yes
+		}
+		hidden_trigger = {
+			NAND = {
+				has_trait = trait_dimorphic_female
+				has_reproductive_politics = yes
+				owner = {
+					has_valid_civic = civic_patriarchy
+				}
+			}
+			OR = {
+				traits_restrict_specialist_jobs = no
+				has_pop_flag = allow_priest_traits
+				has_pop_flag = allow_researcher_traits
+				has_pop_flag = allow_administrator_traits
+				has_pop_flag = allow_merchant_traits
+				has_pop_flag = allow_executive_traits
+				owner = {
+					has_valid_civic = civic_aristocratic_elite
+				}
+			}
+		}
+	}
 	else = {
 		custom_tooltip = RULER_JOB_TRIGGER
 		hidden_trigger = {
@@ -505,6 +509,7 @@ can_fill_ruler_job = {
 				has_trait = trait_syncretic_proles
 				has_trait = trait_nerve_stapled
 				has_trait = trait_presapient_docile_livestock
+				has_trait = trait_zombie
 				# Diagraphers Trait mod
 				has_trait = trait_subsapient_form
 				# Expanded Traits, Civics, Pops, and More
@@ -513,6 +518,12 @@ can_fill_ruler_job = {
 				has_trait = trait_symbiotic
 				has_trait = trait_slave_gene
 			}
+			# Evolved -----------------------------------------------------
+			NOR = {
+				tec_has_ruler_job_invalidation_trait = yes
+				tec_has_stapled_trait = yes
+			}
+			# /
 			OR = {
 				NOT = { has_trait = trait_mechanical }
 				AND = {
@@ -520,6 +531,15 @@ can_fill_ruler_job = {
 					owner = { has_policy_flag = ai_full_rights }
 				}
 			}
+			# Evolved -----------------------------------------------------
+			OR = {
+				NOT = { has_trait = trait_tec_bioservant }
+				AND = {
+					owner = { has_technology = tech_tec_bioservant_3 }		
+					owner = { has_policy_flag = bioservant_full_rights }
+				}
+			}
+			# /
 			NOT = { has_citizenship_type = { type = citizenship_organic_trophy } }
 			if = {
 				limit = {
@@ -528,27 +548,5 @@ can_fill_ruler_job = {
 				divinity_right_to_work_job_check_trigger_ruler = yes
 			}
 		}
-	}
-	# # Diagraphers Trait mod
-	# else = {
-	# 	hidden_trigger = {
-	# 		has_holofrixit = yes
-	# 		NAND = {
-	# 			has_trait = trait_dimorphic_female
-	# 			has_reproductive_politics = yes
-	# 			owner = {
-	# 				has_valid_civic = civic_patriarchy
-	# 			}
-	# 		}
-	# 		OR = {
-	# 			traits_restrict_specialist_jobs = no
-	# 			has_pop_flag = allow_priest_traits
-	# 			has_pop_flag = allow_researcher_traits
-	# 			has_pop_flag = allow_administrator_traits
-	# 			has_pop_flag = allow_merchant_traits
-	# 			has_pop_flag = allow_executive_traits
-	# 			owner = { has_valid_civic = civic_aristocratic_elite }
-	# 		}
-	# 	}
 	}
 }

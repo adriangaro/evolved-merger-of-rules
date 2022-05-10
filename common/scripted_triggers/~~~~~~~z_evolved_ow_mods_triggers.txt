@@ -7,8 +7,7 @@ ehof_default_country = {
 		is_country_type = fallen_empire
 		is_country_type = awakened_fallen_empire
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# The Empty Vagrant
 		is_country_type = default_ev
 
@@ -65,15 +64,7 @@ is_memeable_space_habitat = {
 		merg_is_habitat = yes
 		merg_is_hab_ringworld = yes
 		# Gigastructural Engineering & More
-		uses_district_set = giga_planet
-		uses_district_set = penrose_ring
-		uses_district_set = giga_gas_giant_habitat
-		uses_district_set = giga_birch
-		uses_district_set = virtual_ring
-		uses_district_set = virtual_ring_industry
-		uses_district_set = acot_giga_void_sphere
-		uses_district_set = giga_alderson
-		is_planet_class = pc_flat_world
+		giga_habitable_structure = yes
 		# Evolved
 		uses_district_set = elysium_phase_2
 	}
@@ -150,8 +141,7 @@ is_playable_country = {
 		is_country_type = fallen_empire
 		is_country_type = awakened_fallen_empire
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# ACOT
 		is_country_type = eternal_empire
 		is_country_type = original_empire_active
@@ -169,8 +159,7 @@ CmtTriggerIsPlayableEmpire = {
 		is_country_type = default
 		is_ai = no
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# The Empty Vagrant
 		is_country_type = default_ev
 		# Stellaris Expanded
@@ -186,8 +175,7 @@ CmtTriggerIsEmpire = {
 		is_country_type = fallen_empire
 		is_country_type = awakened_fallen_empire
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# The Empty Vagrant
 		is_country_type = default_ev
 		is_country_type = fallen_empire_ev
@@ -233,8 +221,7 @@ is_default_and_fallen_country = {
 		is_country_type = fallen_empire
 		is_country_type = awakened_fallen_empire
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# The Empty Vagrant
 		is_country_type = default_ev
 		is_country_type = fallen_empire_ev
@@ -260,8 +247,7 @@ is_default_country_wg = {
 		is_country_type = default
 		is_country_type = default_ev
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
@@ -290,8 +276,7 @@ AAR_trgr_cntr_playable = {
 		is_country_type = original_empire_passive
 		is_country_type = original_empire_active
 		# ZOFE
-		is_country_type = ascended_empire
-		is_country_type = lost_empire
+		is_zofe_country = yes
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
@@ -331,6 +316,7 @@ tec_is_ringworld = {
 		uses_district_set = interstellar_ring
 		# Ancient Empire
 		uses_district_set = ag_ancient_ringworld
+		uses_district_set = lege_fragment
 		
 		merg_is_hab_ringworld = yes
 	}
@@ -342,5 +328,60 @@ tec_is_habitat = {
 		tec_is_pd_habitat_mimic_planet = yes
 
 		merg_is_habitat = yes
+	}
+}
+
+tec_is_pd_perfect_planets = {
+	# for planetary perfect planets
+	OR = {
+		is_pd_unique = yes
+		is_planet_class = @pc_pdshroud
+		is_pd_gaia = yes
+	#	tec_is_pd_exotic_planets = yes
+	}
+}
+
+tec_is_viable_lifegood_planet = {
+	OR = {
+		is_planet_class = pc_gaia
+		tec_is_pd_perfect_planets = yes
+		# ASPR
+		is_planet_class = pc_apsr_ancient 
+		is_planet_class = pc_apsr_unique
+		# Legendary expanded
+		is_planet_class = pc_lege_planet
+	}
+}
+
+# for special arcologies
+tec_is_viable_lifeneutral_planet = {
+	OR = { 
+		is_artificial = yes
+		tec_is_pd_perfect_planets = yes
+		is_planet_class = pc_legwcity
+		is_planet_class = pc_legwutopia
+	}
+}
+
+tec_invalidates_ecoworld_project_comp = {
+	OR = {
+		uses_district_set = city_world
+		is_artificial = yes
+		# Planetary diversity compatibility
+		tec_is_pd_city_planet = yes
+		is_planet_class = pc_legwcity
+		is_planet_class = pc_legwutopia
+	}
+}
+
+tec_invalidates_arcology_project_comp = {
+	OR = {
+		uses_district_set = city_world
+		# Wenkwort
+		has_modifier = pm_wenkwort_custodian
+		# Planetary diversity compatibility
+		is_planet_class = @pc_pdshroud
+		tec_is_pd_city_planet = yes
+		is_artificial = yes
 	}
 }

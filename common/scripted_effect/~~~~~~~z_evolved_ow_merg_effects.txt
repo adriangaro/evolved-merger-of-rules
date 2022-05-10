@@ -1,0 +1,90 @@
+# Acquisition of Technology
+remove_capital_building = {
+	switch = {
+		trigger = has_building
+		building_colony_shelter = { remove_building = building_colony_shelter }
+		building_capital = { remove_building = building_capital }
+		building_major_capital = { remove_building = building_major_capital }
+		building_system_capital = { remove_building = building_system_capital }
+		building_hab_capital = { remove_building = building_hab_capital }
+		building_hab_major_capital = { remove_building = building_hab_major_capital }
+		building_resort_capital = { remove_building = building_resort_capital }
+		building_resort_major_capital = { remove_building = building_resort_major_capital }
+		building_slave_capital = { remove_building = building_slave_capital }
+		building_slave_major_capital = { remove_building = building_slave_major_capital }
+		building_ancient_palace = { remove_building = building_ancient_palace }
+		building_ancient_control_center = { remove_building = building_ancient_control_center }
+		# Star Wars: Kuat Ancient Empire
+		building_kuat_command_center = { remove_building = building_kuat_command_center }
+		# Twinks Atlantean
+		building_ancient_palace_at = { remove_building = building_ancient_palace_at }
+		# Twinks Kaldorei
+		building_nightelf_palace = { remove_building = building_ancient_palace_at }
+		# Special Colonies Overhaul
+		building_SCO_resort_system_capital = { remove_building = building_SCO_resort_system_capital }
+		building_SCO_slave_system_capital = { remove_building = building_SCO_slave_system_capital }
+		# All that is GRIMDARK
+		building_hive_major_capital_sick = { remove_building = building_hive_major_capital_sick }
+		building_system_capital_gr = { remove_building = building_system_capital_gr }
+		# Azur Lane Stellaris DLC
+		azur_building_mind_capital = { remove_building = azur_building_mind_capital }
+		azur_building_mind_net_capital = { remove_building = azur_building_mind_net_capital }
+		# Nirvana Empire Project
+		building_nirvana_empire_palace = { remove_building = building_nirvana_empire_palace }
+		# Stellaris Evolved - habitat
+		building_hab_system_capital = { remove_building = building_hab_system_capital }
+		
+		building_tec_hab_machine_capital = { remove_building = building_tec_hab_machine_capital }
+		building_tec_hab_machine_major_capital = { remove_building = building_tec_hab_machine_major_capital }
+		building_tec_hab_machine_system_capital = { remove_building = building_tec_hab_machine_system_capital }
+		
+		building_tec_hab_hive_capital = { remove_building = building_tec_hab_hive_capital }
+		building_tec_hab_hive_major_capital = { remove_building = building_tec_hab_hive_major_capital }
+		building_tec_hab_hive_system_capital = { remove_building = building_tec_hab_hive_system_capital }
+		
+		building_tec_hab_biohive_capital = { remove_building = building_tec_hab_biohive_capital }
+		building_tec_hab_biohive_major_capital = { remove_building = building_tec_hab_biohive_major_capital }
+		building_tec_hab_biohive_system_capital = { remove_building = building_tec_hab_biohive_system_capital }
+		
+		building_tec_hab_cyberhive_capital = { remove_building = building_tec_hab_cyberhive_capital }
+		building_tec_hab_cyberhive_major_capital = { remove_building = building_tec_hab_cyberhive_major_capital }
+		building_tec_hab_cyberhive_system_capital = { remove_building = building_tec_hab_cyberhive_system_capital }
+
+		# Stellaris Evolved - hive
+
+		building_hive_capital = { remove_building = building_hive_capital }
+		building_hive_major_capital = { remove_building = building_hive_major_capital }
+		building_hive_system_capital = { remove_building = building_hive_system_capital }
+		building_hive_galactic_capital = { remove_building = building_hive_galactic_capital }
+
+		building_tec_cyberhive_capital = { remove_building = building_tec_cyberhive_capital }
+		building_tec_cyberhive_major_capital = { remove_building = building_tec_cyberhive_major_capital }
+		building_tec_cyberhive_system_capital = { remove_building = building_tec_cyberhive_system_capital }
+		building_tec_cyberhive_galactic_capital = { remove_building = building_tec_cyberhive_galactic_capital }
+
+		building_tec_biohive_capital = { remove_building = building_tec_biohive_capital }
+		building_tec_biohive_major_capital = { remove_building = building_tec_biohive_major_capital }
+		building_tec_biohive_system_capital = { remove_building = building_tec_biohive_system_capital }
+		building_tec_biohive_galactic_capital = { remove_building = building_tec_biohive_galactic_capital }
+
+		building_machine_capital = { remove_building = building_machine_capital }
+		building_machine_major_capital  = { remove_building = building_machine_major_capital  }
+		building_machine_system_capital  = { remove_building = building_machine_system_capital  }
+		building_machine_galactic_capital = { remove_building = building_machine_galactic_capital }
+
+		building_tec_old_machine_capital = { remove_building = building_tec_old_machine_capital }
+		building_tec_old_machine_major_capital  = { remove_building = building_tec_old_machine_major_capital  }
+		building_tec_old_machine_system_capital  = { remove_building = building_tec_old_machine_system_capital  }
+		building_tec_old_machine_mega_capital = { remove_building = building_tec_old_machine_mega_capital }
+
+		building_tec_machine_production_capital = { remove_building = building_tec_machine_production_capital }
+		building_tec_machine_production_major_capital  = { remove_building = building_tec_machine_production_major_capital  }
+		building_tec_machine_production_system_capital  = { remove_building = building_tec_machine_production_system_capital  }
+		building_tec_machine_production_galactic_capital = { remove_building = building_tec_machine_production_galactic_capital }
+
+		building_tec_machine_extraction_capital = { remove_building = building_tec_machine_extraction_capital }
+		building_tec_machine_extraction_major_capital  = { remove_building = building_tec_machine_extraction_major_capital  }
+		building_tec_machine_extraction_system_capital  = { remove_building = building_tec_machine_extraction_system_capital  }
+		building_tec_machine_extraction_galactic_capital = { remove_building = building_tec_machine_extraction_galactic_capital }
+	}
+}
