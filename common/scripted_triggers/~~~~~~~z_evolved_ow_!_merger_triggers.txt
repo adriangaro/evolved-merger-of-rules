@@ -69,4 +69,3 @@ merg_has_cloning_building = {
 		tec_has_genetic_buildings = yes
 	}
 }
-

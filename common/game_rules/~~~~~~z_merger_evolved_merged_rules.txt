@@ -29,7 +29,7 @@ species_can_live_on_planet = {
 				tec_is_cyborg_pop = yes
 				exists = root.owner
 				root.owner = {
-					has_authority = auth_machine_intelligence
+					is_machine_empire = yes
 					has_valid_civic = civic_machine_assimilator					# Assimilator empire
 				}
 			}
@@ -96,17 +96,16 @@ can_generate_leader_from_pop = {
 	}
 	NOR = {
 		has_trait = trait_syncretic_proles
-		has_trait = trait_nerve_stapled
-		has_trait = trait_zombie
+		can_think = yes
 		# Rogue Maid (Rogue Servitor Completely Remake)
 		has_trait = trait_working_machine
 		# Plentiful Perks
 		has_trait = trait_plentiful_traditions_pt_cocoon
 		# Ethics & Civics: Bug Branch
-		has_trait = trait_slave_gene
+		has_trait = trait_bugged_slave_gene
 		# Expanded Events / Expanded Traits, Civics, Pops, and More
-		has_trait = trait_memorex_comatos
 		has_trait = trait_infested_basic
+		has_trait = trait_tree_caretaker
 		# Holofrixit Revisited
 		has_trait = trait_holodrone
 		# Expanded Gestalts
@@ -116,19 +115,18 @@ can_generate_leader_from_pop = {
 		# Diagraphers Trait Mod
 		has_trait = trait_subsapient_form
 		has_trait = trait_living_architecture
-		# Stellaris Evolved
-		AND = {
-			has_stellaris_evolved = yes
-			tec_has_stapled_trait = yes
-		}
+		# Lithoid Supremacy
+		has_trait = trait_pearl_born_drone
 	}
 	OR = {
 		is_robot_pop = no
 		root = {
 			OR = {
 				has_technology = tech_synthetic_leaders
-				has_authority = auth_machine_intelligence
+				is_machine_empire = yes
 				is_mechanical_empire = yes
+				# Girls Frontline
+				has_technology = tech_gf_mind_upgrade_1
 			}
 		}
 		# Holofrixit Revisited / Silfae's Portraits: Revisited
@@ -189,9 +187,11 @@ can_generate_leader_from_species = {
 			type = citizenship_full
 			country = root
 		}
-		# ThaumStellaris
-		NOT = {
-			has_trait = "tc_trait_golem"
+		NOR = {
+			# ThaumStellaris
+			has_trait = tc_trait_golem
+			# Ethics and Civics - Bug Branch
+			has_trait = "trait_bugged_symbiotic"
 		}
 		# Stellaris Evolved
 		NAND = {
@@ -210,18 +210,13 @@ species_has_happiness = {
 	NOR = {
 		has_trait = trait_machine_unit
 		has_trait = trait_hive_mind
-		has_trait = trait_nerve_stapled
-		has_trait = trait_zombie
-		# Stellaris Evolved
-		has_trait = trait_tec_bioservant_nerve_stapled
+		can_think = no
 		# Warship Girls R And MIST Species
 		has_trait = sh_trait_shenhai
 		has_trait = sh_trait_shenhai1
 		has_trait = sh_trait_shenhai2
 		has_trait = sh_trait_silent
 		has_trait = sh_trait_silent1
-		# Expanded Events
-		has_trait = trait_memorex_comatos
 		# Trait Diversity
 		has_trait = trait_td_multi_hiveminded
 		has_trait = trait_td_emotionless
@@ -264,7 +259,9 @@ species_has_happiness = {
 				NOT = {
 					exists = from
 				}
-				from = { is_machine_empire = yes }
+				from = {
+					is_machine_empire = yes
+				}
 				from = {
 					NOT = {
 						has_technology = tech_synthetic_workers
@@ -367,6 +364,8 @@ can_species_procreate = {
 		has_trait = trait_dimorphic_male
 		# Girls Frontline
 		has_trait = trait_doll
+		# Lithoid Supremacy
+		has_trait = trait_pearl_born_drone
 	}
 	NAND = {
 		root = {
@@ -584,6 +583,11 @@ can_species_be_assembled = {
 					}
 				}	
 			}
+			else_if = {
+				limit = {
+					root = { has_modifier = tiyanki_trophy }
+				}
+			}
 			# Expanded Traits, Civics, Pops, and More
 			else_if = {
 				limit = {
@@ -602,6 +606,17 @@ can_species_be_assembled = {
 					merg_has_cloning_building = yes
 				}
 			}
+			# Lithoid supremacy
+			else_if = {
+				limit = { has_trait = trait_pearl_born_royal }
+				root = {
+					any_owned_species = { 
+						OR = {
+							has_trait = trait_pearl_born_drone 
+							has_trait = trait_pearl_born_royal
+						}
+					}
+				}
 			else_if = {
 				# Clone army thing
 				limit = {
@@ -907,7 +922,7 @@ can_support_branch_offices = {
 				# Arknights Near Future
 				has_valid_civic = civic_business_union
 				# Girls Frontline
-				has_civic = civic_gf_GK
+				has_valid_civic = civic_gf_GK
 			}
 		}
 	}
@@ -970,11 +985,48 @@ can_build_branch_office_on_planet = {
 			OR = {
 				is_same_species = root
 				NOT = {
-					has_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_fanatic_purifiers
 				}
 			}
 		}
 	}
+
+	if = {
+		limit = {
+			has_stellaris_evolved = yes	
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_NOT_COOPERACORP
+			exists = owner
+			OR = {
+				owner = { 
+					is_megacorp = no
+				}
+	
+				AND = {
+					owner = { 
+						is_megacorp = yes
+					}
+					root = {
+						has_valid_civic = civic_tec_corporate_cooperacorp
+					}
+				}
+				
+				AND = {
+					owner = { 
+						is_megacorp = yes
+						has_valid_civic = civic_tec_corporate_cooperacorp
+					}
+					root = {
+						NOT = {
+							has_valid_civic = civic_tec_corporate_cooperacorp
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	custom_tooltip = {
 		fail_text = BRANCH_OFFICE_NOT_COMMERCIAL_PACT
 		exists = owner
@@ -986,12 +1038,9 @@ can_build_branch_office_on_planet = {
 					has_authority = auth_azur_lane_1
 				}
 			}
-			root = { tec_is_symbiotic_hivemind = yes }
 			root = {
-				NOT = {
-					has_valid_civic = civic_tec_machine_traders
-				}
-				tec_is_symbiotic_machine = yes
+				tec_is_symbiotic_gestalt = yes
+				tec_is_trade_gestalt = no
 			}
 			root = { tec_is_parasite_hivemind = yes }
 			owner = {
@@ -1036,36 +1085,31 @@ can_build_branch_office_on_planet = {
 				is_forced_friendly = prev.owner
 			}
 			# Vanilla
-			# allow branch offices in subsidiaries and vice versa
+			# allow branch offices in subsidiaries and vice versa (and fellow subjects)
 			root = {
 				is_subject = yes
 				OR = {
-					is_subject_type = subsidiary
-					# Reworked Advanced Ascension
-					is_subject_type = AAR_SBJ_subsidiary
-					# Stellaris Evolved
+					is_megacorp = yes
 					tec_is_symbiotic_gestalt = yes
 				}
 				overlord = {
-					is_same_value = prevprev.owner
+					OR = {
+						is_same_value = prevprev.owner
+						is_same_value = prevprev.owner.overlord
+					}
 				}
 			}
 			owner = {
 				is_subject = yes
-				OR = {
-					is_subject_type = subsidiary
-					# Reworked Advanced Ascension
-					is_subject_type = AAR_SBJ_subsidiary
-					# Warship Girls R And MIST Species
-					overlord = {
-						has_authority = auth_warshipgirls
+				overlord = {
+					OR = {
+						is_same_value = root
+						is_same_value = root.overlord
 					}
-					root = {
+					OR = {
+						is_megacorp = yes
 						tec_is_symbiotic_gestalt = yes
 					}
-				}
-				overlord = {
-					is_same_value = root
 				}
 			}
 			AND = {
@@ -1092,7 +1136,10 @@ can_build_branch_office_on_planet = {
 					root = {
 						is_subject = yes
 						overlord = {
-							is_same_value = prevprev.owner
+							OR = {
+								is_same_value = prevprev.owner
+								is_same_value = prevprev.owner.overlord
+							}
 						}
 					}
 					owner = {
@@ -1115,6 +1162,80 @@ can_build_branch_office_on_planet = {
 		}
 	}
 	custom_tooltip = {
+		fail_text = BRANCH_OFFICE_MEGACORP_OVERLORD
+		exists = owner
+		# failure message for having a corporate overlord
+
+		if = {
+			limit = {
+				OR = {
+					# Not valid if you aren't a subject.
+					root = {
+						is_subject = no
+					}
+					# Or if your overlord isn't a megacorp.
+					root = {
+						is_subject = yes
+						overlord = {
+							NOR = {
+								is_megacorp = yes
+								tec_is_symbiotic_gestalt = yes
+							}
+						}
+					}
+				}
+			}
+			always = yes
+		}
+		else = {
+			AND = {
+				root = {
+					is_subject = yes
+					overlord = {
+						OR = {
+							is_megacorp = yes
+							tec_is_symbiotic_gestalt = yes
+						}
+					}
+				}
+				owner = {
+					OR = {
+						is_subject = no
+						AND = {
+							is_subject = yes
+							overlord = { NOT = { is_same_value = root.overlord } }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			has_stellaris_evolved = yes
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_NOT_RELATION
+			exists = owner
+			OR = {
+				root = { is_megacorp = yes }
+				root = {
+					tec_is_symbiotic_gestalt = yes
+					tec_is_trade_gestalt = yes
+				}
+				root = { is_criminal_syndicate = yes }
+				root = { tec_is_parasite_hivemind = yes }
+				root = { tec_is_parasite_machine = yes }
+				this.owner = {
+					opinion_level = { who = root level >= good }
+				}
+				owner = { is_in_federation_with = root }
+			}
+		}
+	}
+
+	custom_tooltip = {
 		fail_text = BRANCH_OFFICE_CRIMINAL_HERITAGE_HAS_TRUCE
 		exists = owner
 		OR = {
@@ -1127,11 +1248,11 @@ can_build_branch_office_on_planet = {
 					is_at_war_with = root
 				}
 			}
-			# Azur Lane Stellaris DLC
+		}
+		# Azur Lane Stellaris DLC
+		NOT = {
 			root = {
-				NOT = {
-					has_authority = auth_azur_lane_1
-				}
+				has_authority = auth_azur_lane_1
 			}
 		}
 	}
@@ -1150,10 +1271,56 @@ can_build_branch_office_on_planet = {
 					has_planet_flag = criminal_branch_closed_cooldown_planet@root
 				}
 			}
-			# Azur Lane Stellaris DLC
+		}
+		# Azur Lane Stellaris DLC
+		NOT = {
 			root = {
-				NOT = {
-					has_authority = auth_azur_lane_1
+				has_authority = auth_azur_lane_1
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			has_stellaris_evolved = yes
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_PARASITE_HAS_TRUCE
+			exists = owner
+			OR = {
+				root = { 
+					tec_is_parasite_hivemind = no
+				}
+				owner = {
+					NOR = {
+						has_truce = root
+						is_at_war_with = root
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_PARASITE_COOLDOWN
+			exists = owner
+			OR = {
+				root = { 
+					tec_is_parasite_hivemind = no
+				}
+				AND = {
+					root = { tec_is_parasite_hivemind = yes }
+					NOT = { 
+						has_planet_flag = parasite_branch_closed_cooldown_planet@root 
+					}
+				}
+			}
+		}
+	
+		custom_tooltip = {
+			fail_text = BRANCH_OFFICE_TEC_NOT_OWN
+			exists = owner
+			owner = {
+				NOT = { 
+					is_same_value = root
 				}
 			}
 		}
@@ -1164,7 +1331,7 @@ can_build_branch_office_on_planet = {
 		exists = owner
 		owner = {
 			NOR = {
-				has_authority = auth_warshipgirls 
+				has_authority = auth_warshipgirls
 				AND = {
 					has_authority = auth_shenhai
 					OR = {
@@ -1175,7 +1342,6 @@ can_build_branch_office_on_planet = {
 			}
 		}
 	}
-
 	# More Corportate Authorities
 	# principled rogues won't build branch offices in countries they like
 	hidden_trigger = {
@@ -1207,146 +1373,20 @@ can_build_branch_office_on_planet = {
 			}
 		}
 	}
-	
-	# Stellaris Evolved
-	if = {
-		limit = {
-			has_stellaris_evolved = yes
-		}
-		custom_tooltip = {
-			fail_text = BRANCH_OFFICE_TEC_NOT_COOPERACORP
-			exists = owner
-			OR = {
-				owner = {
-					is_megacorp = no
-				}
-				AND = {
-					owner = {
-						is_megacorp = yes
-					}
-					root = {
-						has_valid_civic = civic_tec_corporate_cooperacorp
-					}
-				}
-				AND = {
-					owner = {
-						is_megacorp = yes
-						has_valid_civic = civic_tec_corporate_cooperacorp
-					}
-					root = {
-						NOT = {
-							has_valid_civic = civic_tec_corporate_cooperacorp
-						}
-					}
-				}
-			}
-		}
-		
-		custom_tooltip = {
-			fail_text = BRANCH_OFFICE_TEC_NOT_RELATION
-			exists = owner
-			OR = {	
-				root = { is_megacorp = yes }
-				root = { 
-					has_valid_civic = civic_tec_machine_traders
-					tec_is_symbiotic_machine = yes
-				}
-				root = { is_criminal_syndicate = yes }
-				root = { tec_is_parasite_hivemind = yes }
-				root = { tec_is_parasite_machine = yes }
-				this.owner = {
-					opinion_level = { who = root level >= good }
-				}
-				owner = {
-					is_in_federation_with = root
-				}
-				# allow branch offices in subsidiaries and vice versa
-				root = {
-					is_subject = yes
-					OR = {
-						is_subject_type = subsidiary
-						# Stellaris Evolved
-						tec_is_symbiotic_gestalt = yes
-					}
-					overlord = {
-						is_same_value = prevprev.owner
-					}
-				}
-				owner = {
-					is_subject = yes
-					OR = {
-						is_subject_type = subsidiary
-						# Stellaris Evolved
-						root = {
-							tec_is_symbiotic_gestalt = yes
-						}
-					}
-					overlord = {
-						is_same_value = root
-					}
-				}
-			}
-		}
-
-		custom_tooltip = {
-			fail_text = BRANCH_OFFICE_TEC_PARASITE_HAS_TRUCE
-			exists = owner
-			OR = {
-				root = {
-					tec_is_parasite_hivemind = no
-				}
-				owner = {
-					NOR = {
-						has_truce = root
-						is_at_war_with = root
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = BRANCH_OFFICE_TEC_PARASITE_COOLDOWN
-			exists = owner
-			OR = {
-				root = {
-					tec_is_parasite_hivemind = no
-				}
-				AND = {
-					root = {
-						tec_is_parasite_hivemind = yes
-					}
-					NOT = {
-						has_planet_flag = parasite_branch_closed_cooldown_planet@root
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = BRANCH_OFFICE_TEC_NOT_OWN
-			exists = owner
-			owner = {
-				NOT = {
-					is_same_value = root
-				}
-			}
-		}
-	}
 }
+
 
 # This = country
 # Checked by is_criminal_syndicate trigger
 is_criminal_syndicate_rule = {
 	OR = {
 		AND = {
-			OR = {
-				is_megacorp = yes
-				has_valid_civic = civic_galactic_sovereign_megacorp
-			}
+			is_megacorp = yes
 			OR = {
 				has_valid_civic = civic_criminal_heritage
 				# The Empty Vagrant
 				has_valid_civic = civic_ev_criminal_ship
 			}
-			tec_is_parasite_hivemind = no
 		}
 		tec_is_parasite_hivemind = yes
 	}

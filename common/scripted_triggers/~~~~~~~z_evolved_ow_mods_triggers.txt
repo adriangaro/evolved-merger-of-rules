@@ -14,6 +14,8 @@ ehof_default_country = {
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -38,16 +40,21 @@ giga_habitable_structure = {
 		merg_is_habitat = yes
 		merg_is_hab_ringworld = yes
 		# Gigastructural Engineering & More
-		uses_district_set = giga_planet
-		uses_district_set = penrose_ring
-		uses_district_set = interstellar_ring
-		uses_district_set = giga_gas_giant_habitat
-		uses_district_set = giga_birch
-		uses_district_set = virtual_ring
-		uses_district_set = virtual_ring_industry
-		uses_district_set = acot_giga_void_sphere
-		uses_district_set = giga_alderson
+		is_planet_class = pc_habitable_gas_giant
+		is_planet_class = pc_interstellar_habitat
+		is_planet_class = pc_birch
+		is_planet_class = pc_void_birch
+		is_planet_class = pc_virtual_reality
+		is_planet_class = pc_virtual_industry
+		is_planet_class = pc_virtual_stellar_industry
+		is_planet_class = pc_alderson_slice_gaia
+		is_planet_class = pc_alderson_slice_pc
+		is_planet_class = pc_alderson_slice_ecu
+		is_planet_class = pc_alderson_slice_hive
+		is_planet_class = pc_alderson_slice_machine
 		is_planet_class = pc_pouchkinn_black_hole
+		is_planet_class = pc_flat_world
+		is_planet_class = pc_giga_frameworld
 		# AOT
 		uses_district_set = phanon_macripp
 		# Evolved
@@ -131,6 +138,8 @@ kuat_is_common_country = {
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -150,6 +159,8 @@ is_playable_country = {
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -165,6 +176,8 @@ CmtTriggerIsPlayableEmpire = {
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -186,6 +199,8 @@ CmtTriggerIsEmpire = {
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -197,6 +212,8 @@ exalted_is_valid_as_vassal = {
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -238,6 +255,8 @@ is_default_and_fallen_country = {
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -251,6 +270,8 @@ is_default_country_wg = {
 		# Stellaris Expanded
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -335,7 +356,7 @@ tec_is_pd_perfect_planets = {
 	# for planetary perfect planets
 	OR = {
 		is_pd_unique = yes
-		is_planet_class = @pc_pdshroud
+		is_planet_class = pc_pdshroud
 		is_pd_gaia = yes
 	#	tec_is_pd_exotic_planets = yes
 	}
@@ -380,7 +401,7 @@ tec_invalidates_arcology_project_comp = {
 		# Wenkwort
 		has_modifier = pm_wenkwort_custodian
 		# Planetary diversity compatibility
-		is_planet_class = @pc_pdshroud
+		is_planet_class = pc_pdshroud
 		tec_is_pd_city_planet = yes
 		is_artificial = yes
 	}

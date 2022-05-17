@@ -273,26 +273,42 @@ is_autocracy = { #Power of one
 can_fill_worker_job = {
 	custom_tooltip = WORKER_JOB_TRIGGER
 	hidden_trigger = {
-		NOT = { has_ethic = ethic_gestalt_consciousness }
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
 		exists = owner
 		OR = {
 			is_being_purged = no
 			# Expanded Traits, Civics, Pops, and More
 			AND = {
 				has_expanded_pops = yes
-				OR = {		
-					has_purge_type = { type = purge_displacement }
-					has_purge_type = { type = purge_neutering }
+				OR = {
+					has_purge_type = {
+						type = purge_displacement
+					}
+					has_purge_type = {
+						type = purge_neutering
+					}
 				}
 			}
 		}
 		is_being_assimilated = no
-		NOT = { has_citizenship_type = { type = citizenship_organic_trophy } }
+		NOT = {
+			has_citizenship_type = {
+				type = citizenship_organic_trophy
+			}
+		}
 		NAND = {
-			has_citizenship_type = { type = citizenship_slavery }
+			has_citizenship_type = {
+				type = citizenship_slavery
+			}
 			OR = {
-				has_slavery_type = { type = slavery_livestock }
-				has_slavery_type = { type = slavery_matrix }
+				has_slavery_type = {
+					type = slavery_livestock
+				}
+				has_slavery_type = {
+					type = slavery_matrix
+				}
 			}
 		}
 		if = {
@@ -331,15 +347,21 @@ can_fill_worker_job = {
 can_fill_specialist_job = {
 	custom_tooltip = SPECIALIST_JOB_TRIGGER
 	hidden_trigger = {
-		NOT = { has_ethic = ethic_gestalt_consciousness }
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+		}
 		exists = owner
 		OR = {
 			is_enslaved = no
-			has_slavery_type = { type = slavery_indentured }
+			has_slavery_type = {
+				type = slavery_indentured
+			}
 			# Expanded Traits, Civics, Pops, and More
 			AND = {
 				has_expanded_pops = yes
-				NOT = { host_has_dlc = "Utopia" }
+				NOT = {
+					host_has_dlc = "Utopia"
+				}
 				is_same_species = owner_main_species
 				owner = {
 					OR = {
@@ -432,13 +454,17 @@ can_fill_ruler_job = {
 			is_being_assimilated = no
 			NOR = {
 				has_trait = trait_syncretic_proles
-				has_trait = trait_nerve_stapled
-				has_trait = trait_zombie
+				can_think = no
 				# Diagraphers Trait mod
 				has_trait = trait_subsapient_form
 				# Ethics and Civics Alternative - Redux
-				has_trait = trait_symbiotic
+				AND = {
+					has_ethics_redux = yes # Bug Branch allows symbiotics to rule
+					has_trait = trait_symbiotic
+				}
 				has_trait = trait_slave_gene
+				# Lithoid Supremacy
+				has_trait = trait_pearl_born_drone
 			}
 		}
 	}
@@ -548,5 +574,16 @@ can_fill_ruler_job = {
 				divinity_right_to_work_job_check_trigger_ruler = yes
 			}
 		}
+	}
+}
+
+can_think = {
+	NOR = {
+		has_trait = trait_nerve_stapled
+		has_trait = trait_zombie
+		# Stellaris evolved
+		tec_has_stapled_trait = yes
+		# Expanded Events
+		has_trait = trait_memorex_comatos
 	}
 }
