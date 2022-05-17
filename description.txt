@@ -87,7 +87,7 @@ Should not matter as file names sort load order prioritites, but still:
 [list]
     [*]tec_is_psionic_pop
     [*]tec_is_total_psionic_pop
-    [*]tec_is_default_country
+    [*]tec_is_defaupc_pdshroudlt_country
     [*]tec_is_ringworld
 	[*]tec_is_default_country
 [/list]

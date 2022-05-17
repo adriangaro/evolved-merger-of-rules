@@ -18,6 +18,8 @@ merg_is_standard_empire = {
 		# Stellaris Evolved
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -33,6 +35,8 @@ merg_is_default_empire = {
 		# Stellaris Evolved
 		is_country_type = default_exocolonist
 		is_country_type = default_exocolonist_ai
+		# Darkspace
+		is_country_type = ds_nomads
 	}
 }
 
@@ -65,6 +69,10 @@ merg_has_cloning_building = {
 		# The Dark Arts of Necromancy
 		has_building = building_house_of_the_fleshsculpter
 		has_building = building_summoner_site
+		# Lithoid Supremacy
+		has_building = building_crystallization_facilities
+		has_building = building_ocean_spawning_pool
+		# Stellaris evolved
 		tec_has_cloning_buildings = yes
 		tec_has_genetic_buildings = yes
 	}
