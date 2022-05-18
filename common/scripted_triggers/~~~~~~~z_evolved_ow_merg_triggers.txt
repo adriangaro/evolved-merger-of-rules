@@ -238,7 +238,6 @@ is_oligarchy = { #Power of few
 			is_egalitarian = no
 			is_authoritarian = no
 		}
-		tec_is_aiauth_empire = yes
 	}
 }
 
