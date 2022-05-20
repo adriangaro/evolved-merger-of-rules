@@ -582,7 +582,7 @@ can_species_be_assembled = {
 						tec_can_assemble_organic_hive_species = yes
 					}
 				}	
-			}can_support_branch_offices
+			}
 			else_if = {
 				limit = {
 					root = { has_modifier = tiyanki_trophy }
