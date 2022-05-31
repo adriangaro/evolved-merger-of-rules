@@ -1410,3 +1410,276 @@ can_fill_specialist_job = {
 can_fill_ruler_job = {
 	can_fill_ruler_job = yes
 }
+
+# temporary
+should_force_decline_species = {
+	OR = {
+		# Infertile Clone Army pops should decline if in Country that can't have Vats, or there is a Vat shortage.
+		custom_tooltip = {
+			success_text = CLONE_ARMY_FORCE_DECLINE
+			OR = {
+				has_trait = trait_clone_soldier_infertile
+				has_trait = trait_clone_soldier_infertile_full_potential
+			}
+			from = {
+				OR = {
+					# Check if country is unable to build Vats for this species.
+					AND = {
+						exists = owner
+						owner = {
+							OR = {
+								NOT = {
+									has_origin = origin_clone_army
+								}
+								# Can't have Vats.
+								has_country_flag = clone_army_fertility_unlocked								# Can't have Vats anymore.
+								NOT = {
+									owner_main_species = {
+										is_same_species = root
+									}
+								}
+								# Our Vats can't build this species.
+							}
+						}
+					}
+					# Vats check out, but are there more pops than Vats support?
+					check_variable = {
+						which = clone_pops_missing
+						value < 0
+					}
+				}
+			}
+		}
+		# # Diagraphers Trait Mod
+		# custom_tooltip = {
+		# 	success_text = sterile_force_decline
+		# 	has_trait = trait_sterile
+		# 	from.owner = {
+		# 		has_artificial_wombs = no
+		# 	}
+		# }
+		custom_tooltip = {
+			success_text = needs_exotic_gases
+			has_trait = trait_exotic_gas_dependency
+			from.owner = {
+				has_deficit = exotic_gases
+			}
+		}
+		custom_tooltip = {
+			success_text = delicate_enslaved
+			has_trait = trait_delicate
+			has_citizenship_type = {
+				type = citizenship_slavery
+				country = from.owner
+			}
+		}
+		# Expanded Traits, Civics, Pops, and More
+		# Caretakers die without the Tree of Life
+		custom_tooltip = {
+			success_text = TREEFOLK_FORCE_DECLINE
+			has_trait = trait_tree_caretaker
+			from = {
+				NOR = {
+					has_deposit = d_tree_of_life_colony
+					has_deposit = d_tree_of_life_home
+				}
+			}
+		}
+		# Cryogenesis Unofficial Species Pack
+		custom_tooltip = {
+			success_text = SM_ICEPOPS_DIE_WITHOUT_COLD
+			from = {
+				exists = owner
+				owner = {
+					OR = {
+						has_origin = origin_sm_cryogenesis
+						AND = {
+							NOT = {
+								should_force_decline_species = {
+									OR = {
+										# Infertile Clone Army pops should decline if in Country that can't have Vats, or there is a Vat shortage.
+										custom_tooltip = {
+											success_text = CLONE_ARMY_FORCE_DECLINE
+											OR = {
+												has_trait = trait_clone_soldier_infertile
+												has_trait = trait_clone_soldier_infertile_full_potential
+											}
+											from = {
+												OR = {
+													# Check if country is unable to build Vats for this species.
+													AND = {
+														exists = owner
+														owner = {
+															OR = {
+																NOT = {
+																	has_origin = origin_clone_army
+																}
+																# Can't have Vats.
+																has_country_flag = clone_army_fertility_unlocked								# Can't have Vats anymore.
+																NOT = {
+																	owner_main_species = {
+																		is_same_species = root
+																	}
+																}
+																# Our Vats can't build this species.
+															}
+														}
+													}
+													# Vats check out, but are there more pops than Vats support?
+													check_variable = {
+														which = clone_pops_missing
+														value < 0
+													}
+												}
+											}
+										}
+										# # Diagraphers Trait Mod
+										# custom_tooltip = {
+										# 	success_text = sterile_force_decline
+										# 	has_trait = trait_sterile
+										# 	from.owner = {
+										# 		has_artificial_wombs = no
+										# 	}
+										# }
+										custom_tooltip = {
+											success_text = needs_exotic_gases
+											has_trait = trait_exotic_gas_dependency
+											from.owner = {
+												has_deficit = exotic_gases
+											}
+										}
+										custom_tooltip = {
+											success_text = delicate_enslaved
+											has_trait = trait_delicate
+											has_citizenship_type = {
+												type = citizenship_slavery
+												country = from.owner
+											}
+										}
+										# Expanded Traits, Civics, Pops, and More
+										# Caretakers die without the Tree of Life
+										custom_tooltip = {
+											success_text = TREEFOLK_FORCE_DECLINE
+											has_trait = trait_tree_caretaker
+											from = {
+												NOR = {
+													has_deposit = d_tree_of_life_colony
+													has_deposit = d_tree_of_life_home
+												}
+											}
+										}
+										# Cryogenesis Unofficial Species Pack
+										custom_tooltip = {
+											success_text = SM_ICEPOPS_DIE_WITHOUT_COLD
+											from = {
+												exists = owner
+												owner = {
+													OR = {
+														has_origin = origin_sm_cryogenesis
+														AND = {
+															NOT = {
+																has_origin = origin_sm_cryogenesis
+															}
+															OR = {
+																has_trait = trait_pc_sm_cryoworld_preference
+																has_trait = trait_sm_cryogenesis_machine
+															}
+														}
+													}
+												}
+												OR = {
+													is_dry = yes
+													is_wet = yes
+												}
+												NOR = {
+													has_modifier = pm_sm_cryogenesis_1
+													has_modifier = pm_sm_cryogenesis_2
+													has_modifier = pm_sm_cryogenesis_3
+												}
+											}
+										}
+										# Planetary Diversity
+										custom_tooltip = {
+											success_text = UNIT04CHILDREN_FORCE_DECLINE
+											OR = {
+												has_trait = trait_organic_fourschildren
+												has_trait = trait_organic_fourschildren_2
+											}
+											from = {
+												OR = {
+													AND = {
+														exists = owner
+														owner = {
+															OR = {
+																NOT = {
+																	has_origin = origin_techno_world
+																}
+																NOT = {
+																	owner_main_species = {
+																		is_same_species = root
+																	}
+																}
+															}
+														}
+													}
+													check_variable = {
+														which = techno_pops_missing
+														value < 0
+													}
+												}
+											}
+										}
+									}
+								}		has_origin = origin_sm_cryogenesis
+							}
+							OR = {
+								has_trait = trait_pc_sm_cryoworld_preference
+								has_trait = trait_sm_cryogenesis_machine
+							}
+						}
+					}
+				}
+				OR = {
+					is_dry = yes
+					is_wet = yes
+				}
+				NOR = {
+					has_modifier = pm_sm_cryogenesis_1
+					has_modifier = pm_sm_cryogenesis_2
+					has_modifier = pm_sm_cryogenesis_3
+				}
+			}
+		}
+		# Planetary Diversity
+		custom_tooltip = {
+			success_text = UNIT04CHILDREN_FORCE_DECLINE
+			OR = {
+				has_trait = trait_organic_fourschildren
+				has_trait = trait_organic_fourschildren_2
+			}
+			from = {
+				OR = {
+					AND = {
+						exists = owner
+						owner = {
+							OR = {
+								NOT = {
+									has_origin = origin_techno_world
+								}
+								NOT = {
+									owner_main_species = {
+										is_same_species = root
+									}
+								}
+							}
+						}
+					}
+					check_variable = {
+						which = techno_pops_missing
+						value < 0
+					}
+				}
+			}
+		}
+	}
+}
